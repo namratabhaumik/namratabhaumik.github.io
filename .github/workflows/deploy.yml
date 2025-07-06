@@ -1,0 +1,39 @@
+# .github/workflows/deploy.yml
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main # This workflow runs when changes are pushed to the 'main' branch
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest # Use Ubuntu for consistent environment
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4 # Get the code from your repository
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20" # Use a stable Node.js version compatible with Next.js 15
+          cache: "npm" # Cache npm dependencies for faster builds
+
+      - name: Install dependencies
+        run: npm install # Install project dependencies
+
+      - name: Build Next.js site
+        run: npm run build # Run the Next.js build command
+
+      - name: Add .nojekyll file
+        run: touch ./out/.nojekyll # Create the .nojekyll file in the output directory
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }} # GitHub's built-in token for authentication
+          publish_dir: ./out # Directory to publish (your Next.js output)
+          # The cname and publish_branch are critical here:
+          # publish_branch: gh-pages # This is the default and correct branch for user pages
+          # cname: namratabhaumik.github.io # Only uncomment if you had a custom domain setup different than github.io
