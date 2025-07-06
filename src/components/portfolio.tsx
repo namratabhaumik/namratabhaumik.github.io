@@ -1,34 +1,142 @@
-import { Github, Linkedin, Mail, ExternalLink, Award } from "lucide-react";
-import { Button } from "./ui/button";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  ExternalLink,
+  Award,
+  MessageCircle,
+  Instagram,
+  BookOpen,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "./ui/card";
-import { Badge } from "./ui/badge";
+} from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import Link from "next/link";
 
 export default function Portfolio() {
   const skills = [
     {
+      name: "Django",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "React",
+      color: "bg-cyan-100 text-cyan-800 border-cyan-200",
+    },
+    {
+      name: "Python",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "Java",
+      color: "bg-orange-100 text-orange-800 border-orange-200",
+    },
+    {
       name: "JavaScript",
       color: "bg-yellow-100 text-yellow-800 border-yellow-200",
     },
-    { name: "TypeScript", color: "bg-blue-100 text-blue-800 border-blue-200" },
-    { name: "React", color: "bg-cyan-100 text-cyan-800 border-cyan-200" },
-    { name: "Next.js", color: "bg-gray-100 text-gray-800 border-gray-200" },
-    { name: "Node.js", color: "bg-green-100 text-green-800 border-green-200" },
-    { name: "Python", color: "bg-blue-100 text-blue-800 border-blue-200" },
-    { name: "AWS", color: "bg-orange-100 text-orange-800 border-orange-200" },
-    { name: "Docker", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    {
+      name: "MySQL",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "ElasticSearch",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "PostgreSQL",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "Azure",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "GitHub",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
+    {
+      name: "Power BI",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    {
+      name: "Jira",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "Postman",
+      color: "bg-orange-100 text-orange-800 border-orange-200",
+    },
+    {
+      name: "Android",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "D3.js",
+      color: "bg-orange-100 text-orange-800 border-orange-200",
+    },
+    {
+      name: "Figma",
+      color: "bg-purple-100 text-purple-800 border-purple-200",
+    },
+    {
+      name: "AWS",
+      color: "bg-orange-100 text-orange-800 border-orange-200",
+    },
+    {
+      name: "Google Cloud",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "Flask",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
+    {
+      name: "Terraform",
+      color: "bg-purple-100 text-purple-800 border-purple-200",
+    },
+    {
+      name: "FastAPI",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "Firebase",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    {
+      name: "TypeScript",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
+    {
+      name: "Next.js",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
+    {
+      name: "Node.js",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "Docker",
+      color: "bg-blue-100 text-blue-800 border-blue-200",
+    },
     {
       name: "Kubernetes",
       color: "bg-purple-100 text-purple-800 border-purple-200",
     },
-    { name: "MongoDB", color: "bg-green-100 text-green-800 border-green-200" },
-    { name: "PostgreSQL", color: "bg-blue-100 text-blue-800 border-blue-200" },
-    { name: "Unity3D", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    {
+      name: "MongoDB",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    {
+      name: "Unity3D",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
   ];
 
   const projects = [
@@ -87,7 +195,7 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       {/* Hero Section */}
-      <section id="hero" className="relative overflow-hidden bg-white">
+      <section className="relative overflow-hidden bg-white">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
         <div className="relative max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -107,25 +215,30 @@ export default function Portfolio() {
                 Agentic Software Development or any technology in general!
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <Button size="lg" className="bg-blue-600 hover:bg-blue-700" asChild>
-                  <a href="#contact">
+                <Link href="#contact">
+                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
                     <Mail className="w-4 h-4 mr-2" />
                     Get In Touch
-                  </a>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <a href="https://github.com/namratabhaumik" target="_blank" rel="noopener noreferrer">
+                  </Button>
+                </Link>
+                <Link
+                  href="https://github.com/namratabhaumik"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <Button variant="outline" size="lg">
                     <Github className="w-4 h-4 mr-2" />
                     View My Work
-                  </a>
-                </Button>
+                  </Button>
+                </Link>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      <section id="skills" className="py-20 bg-white">
+      {/* Skills Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -149,7 +262,8 @@ export default function Portfolio() {
         </div>
       </section>
 
-      <section id="projects" className="py-20 bg-slate-50">
+      {/* Projects Section */}
+      <section className="py-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -161,14 +275,14 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <a 
+              <Link
                 key={index}
-                href={project.link} 
-                target="_blank" 
+                href={project.link}
+                target="_blank"
                 rel="noopener noreferrer"
                 className="block"
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white h-full">
+                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white cursor-pointer">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <CardTitle className="text-xl font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
@@ -194,7 +308,7 @@ export default function Portfolio() {
                     </div>
                   </CardContent>
                 </Card>
-              </a>
+              </Link>
             ))}
           </div>
           <div className="text-center mt-12">
@@ -202,21 +316,25 @@ export default function Portfolio() {
               Would you like to read more about my projects and journey in tech
               so far?
             </p>
-            <Button
-              variant="outline"
-              className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
-              asChild
+            <Link
+              href="https://github.com/namratabhaumik"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              <a href="https://github.com/namratabhaumik" target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="outline"
+                className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+              >
                 <Github className="w-4 h-4 mr-2" />
                 View All Projects
-              </a>
-            </Button>
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
 
-      <section id="certifications" className="py-20 bg-white">
+      {/* Certifications Section */}
+      <section className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -228,53 +346,122 @@ export default function Portfolio() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {certifications.map((cert, index) => (
-              <a
+              <Link
                 key={index}
                 href={cert.link}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="block"
               >
-                <Card
-                  className="text-center hover:shadow-lg transition-shadow border-0 shadow-md bg-gradient-to-br from-blue-50 to-purple-50"
-                >
+                <Card className="text-center hover:shadow-lg transition-shadow border-0 shadow-md bg-gradient-to-br from-blue-50 to-purple-50 cursor-pointer">
                   <CardContent className="p-6">
                     <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
                     <h3 className="font-semibold text-gray-900">{cert.name}</h3>
                   </CardContent>
                 </Card>
-              </a>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="contact" className="py-20 bg-gradient-to-r from-blue-600 to-purple-600">
+      {/* Contact Section */}
+      <section
+        id="contact"
+        className="py-20 bg-gradient-to-r from-blue-600 to-purple-600"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Say Hello</h2>
           <p className="text-xl text-blue-100 mb-12 max-w-2xl mx-auto">
             Let's connect and explore opportunities to collaborate on exciting
             projects!
           </p>
-          <div className="flex justify-center gap-6">
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50" asChild>
-              <a href="https://linkedin.com/in/namratabhaumik" target="_blank" rel="noopener noreferrer">
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="https://www.linkedin.com/in/namratabhaumik/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
                 <Linkedin className="w-5 h-5 mr-2" />
                 LinkedIn
-              </a>
-            </Button>
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50" asChild>
-              <a href="https://github.com/namratabhaumik" target="_blank" rel="noopener noreferrer">
+              </Button>
+            </Link>
+
+            <Link
+              href="https://github.com/namratabhaumik"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
                 <Github className="w-5 h-5 mr-2" />
                 GitHub
-              </a>
-            </Button>
-            <Button size="lg" variant="secondary" className="bg-white text-blue-600 hover:bg-blue-50" asChild>
-              <a href="mailto:namratabhaumik16@gmail.com">
+              </Button>
+            </Link>
+
+            <Link href="mailto:namratabhaumik16@gmail.com">
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
                 <Mail className="w-5 h-5 mr-2" />
                 Email
-              </a>
-            </Button>
+              </Button>
+            </Link>
+
+            <Link
+              href="https://discordapp.com/users/namrata2599"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
+                <MessageCircle className="w-5 h-5 mr-2" />
+                Discord
+              </Button>
+            </Link>
+
+            <Link
+              href="https://www.instagram.com/missing.nemo/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
+                <Instagram className="w-5 h-5 mr-2" />
+                Instagram
+              </Button>
+            </Link>
+
+            <Link
+              href="https://namrata-bhaumik.medium.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <Button
+                size="lg"
+                variant="secondary"
+                className="bg-white text-blue-600 hover:bg-blue-50"
+              >
+                <BookOpen className="w-5 h-5 mr-2" />
+                Medium
+              </Button>
+            </Link>
           </div>
         </div>
       </section>
