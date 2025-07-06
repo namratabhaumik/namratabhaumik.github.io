@@ -261,6 +261,58 @@ export default function Portfolio() {
         </div>
       </section>
 
+      {/* About Me Section */}
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <h2 className="text-3xl font-bold mb-8 text-gray-900">About Me</h2>
+          <div className="grid md:grid-cols-2 gap-12 items-center">
+            <div className="space-y-6 text-left">
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  My Journey
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  I'm a passionate developer with a love for creating innovative
+                  solutions that bridge the gap between technology and
+                  real-world problems. My journey in tech began with curiosity
+                  and has evolved into a deep appreciation for cloud-native
+                  architectures and AI-augmented development workflows.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Current Focus
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  Currently, I'm focused on exploring context-aware systems and
+                  building scalable applications that leverage the best of cloud
+                  technologies and modern development practices.
+                </p>
+              </div>
+              <div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                  Beyond Code
+                </h3>
+                <p className="text-gray-700 leading-relaxed">
+                  When I'm not coding, you'll find me exploring the latest in
+                  AI/ML technologies, contributing to open-source projects, or
+                  sharing knowledge through technical writing. I believe in the
+                  power of collaboration and continuous learning to drive
+                  meaningful innovation.
+                </p>
+              </div>
+            </div>
+            <div className="flex justify-center">
+              <img
+                src="/profile.jpg"
+                alt="Namrata Bhaumik"
+                className="w-64 h-64 rounded-full object-cover shadow-lg"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Skills Section */}
       <section id="skills" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
