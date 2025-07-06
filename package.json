@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "next build && touch out/.nojekyll && gh-pages -d out -t true"
+    "deploy": "next build && type nul > out\\.nojekyll && gh-pages -d out -t true"
   },
   "dependencies": {
     "next": "15.3.5",
