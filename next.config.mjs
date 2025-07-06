@@ -5,8 +5,7 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  basePath: "",
-  assetPrefix: "./",
+  assetPrefix: "https://namratabhaumik.github.io/", // Explicit absolute URL for your domain
 };
 
 export default nextConfig;
