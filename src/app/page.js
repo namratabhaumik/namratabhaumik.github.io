@@ -167,13 +167,13 @@ export default function Home() {
   return (
     <div className="container">
       <header className="hero-section">
-        <h1>Hi there! I'm Namrata 👋 (she/her)</h1>
+        <h1>Hi there! I&apos;m Namrata 👋 (she/her)</h1>
         <p>
-          I'm currently exploring AI-augmented development workflows, including
-          LLM-powered tools, prompt engineering, and the evolving landscape of
-          context-aware systems. Hit me up for collaborations, discussions,
-          events, or workshops related to Agentic Software Development or any
-          technology in general!
+          I&apos;m currently exploring AI-augmented development workflows,
+          including LLM-powered tools, prompt engineering, and the evolving
+          landscape of context-aware systems. Hit me up for collaborations,
+          discussions, events, or workshops related to Agentic Software
+          Development or any technology in general!
         </p>
       </header>
 
@@ -181,7 +181,13 @@ export default function Home() {
         <h2>My Foundations Lie In</h2>
         <div className="skills-grid">
           {skills.map((skill, index) => (
-            <img key={index} src={skill.img} alt={skill.name} />
+            <Image
+              key={index}
+              src={skill.img}
+              alt={skill.name}
+              width={30}
+              height={30}
+            />
           ))}
         </div>
       </section>
@@ -206,9 +212,11 @@ export default function Home() {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <img
+            <Image
               src="https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white"
               alt="Medium"
+              width={30}
+              height={30}
             />
           </a>
         </p>
@@ -239,7 +247,7 @@ export default function Home() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              <img src={link.img} alt={link.name} />
+              <Image src={link.img} alt={link.name} width={30} height={30} />
             </a>
           ))}
         </div>
