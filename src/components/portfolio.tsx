@@ -19,6 +19,29 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
+// Sticky navigation for better UX
+const Navigation = () => (
+  <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b">
+    <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div className="font-bold text-xl">Namrata</div>
+      <div className="hidden md:flex space-x-6">
+        <a href="#about" className="hover:text-blue-600 transition-colors">
+          About
+        </a>
+        <a href="#projects" className="hover:text-blue-600 transition-colors">
+          Projects
+        </a>
+        <a href="#skills" className="hover:text-blue-600 transition-colors">
+          Skills
+        </a>
+        <a href="#contact" className="hover:text-blue-600 transition-colors">
+          Contact
+        </a>
+      </div>
+    </div>
+  </nav>
+);
+
 export default function Portfolio() {
   const skills = [
     {
@@ -194,8 +217,9 @@ export default function Portfolio() {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
+      <Navigation />
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-white">
+      <section id="about" className="relative overflow-hidden bg-white pt-20">
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
         <div className="relative max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
@@ -238,7 +262,7 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-white">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
@@ -263,7 +287,7 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 bg-slate-50">
+      <section id="projects" className="py-20 bg-slate-50">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4">
