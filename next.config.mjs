@@ -5,7 +5,8 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
-  assetPrefix: "https://namratabhaumik.github.io/", // Explicit absolute URL for your domain
+  // No basePath or assetPrefix for this test.
+  // The action will handle the root deployment.
 };
 
 export default nextConfig;
