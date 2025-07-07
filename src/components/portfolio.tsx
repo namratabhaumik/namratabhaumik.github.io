@@ -9,6 +9,11 @@ import {
   MessageCircle,
   Instagram,
   BookOpen,
+  Briefcase,
+  Calendar,
+  MapPin,
+  GraduationCap,
+  Building,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -226,9 +231,26 @@ export default function Portfolio() {
   ];
 
   const [isLoading, setIsLoading] = useState(true);
+  const [resumeData, setResumeData] = useState<any>(null);
+  const [loadingResume, setLoadingResume] = useState(true);
+  const [resumeError, setResumeError] = useState<string | null>(null);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
+  }, []);
+
+  useEffect(() => {
+    setLoadingResume(true);
+    fetch("/api/resume-data")
+      .then((res) => res.json())
+      .then((data) => {
+        setResumeData(data);
+        setLoadingResume(false);
+      })
+      .catch((e) => {
+        setResumeError("Failed to load resume data");
+        setLoadingResume(false);
+      });
   }, []);
 
   const { scrollY } = useScroll();
@@ -505,6 +527,108 @@ export default function Portfolio() {
           </div>
         </div>
       </motion.section>
+
+      {/* Work Experience Section (Dynamic) */}
+      {/**
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Briefcase className="w-8 h-8 text-blue-600" />
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                Work Experience
+              </h2>
+            </div>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              My professional journey in software development
+            </p>
+          </div>
+          {loadingResume ? (
+            <div className="space-y-4 animate-pulse">
+              {[...Array(2)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-32 bg-gray-200 dark:bg-gray-800 rounded-lg"
+                />
+              ))}
+            </div>
+          ) : resumeError ? (
+            <div className="text-red-500 text-center">{resumeError}</div>
+          ) : resumeData ? (
+            Object.entries(resumeData).map(([file, sections]: any) => (
+              <div key={file} className="mb-12">
+                <h3 className="text-xl font-bold mb-4 text-blue-700 dark:text-blue-300">
+                  {file.replace(/_/g, " ").replace(/\.pdf$/, "")}
+                </h3>
+                {sections.work ? (
+                  <Card className="mb-8">
+                    <CardContent className="p-6">
+                      <pre className="whitespace-pre-wrap text-gray-800 dark:text-gray-200 text-sm">
+                        {sections.work}
+                      </pre>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <div className="text-gray-500">No Work Experience found.</div>
+                )}
+              </div>
+            ))
+          ) : null}
+        </div>
+      </section>
+      */}
+
+      {/* Education Section (Dynamic) */}
+      {/**
+      <section className="py-20 bg-slate-50 dark:bg-[#232946]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <GraduationCap className="w-8 h-8 text-purple-600" />
+              <h2 className="text-3xl font-bold text-gray-900 dark:text-white">
+                Education
+              </h2>
+            </div>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Academic background and qualifications
+            </p>
+          </div>
+          {loadingResume ? (
+            <div className="space-y-4 animate-pulse">
+              {[...Array(2)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-32 bg-gray-200 dark:bg-gray-800 rounded-lg"
+                />
+              ))}
+            </div>
+          ) : resumeError ? (
+            <div className="text-red-500 text-center">{resumeError}</div>
+          ) : resumeData ? (
+            Object.entries(resumeData).map(([file, sections]: any) => (
+              <div key={file} className="mb-12">
+                <h3 className="text-xl font-bold mb-4 text-purple-700 dark:text-purple-300">
+                  {file.replace(/_/g, " ").replace(/\.pdf$/, "")}
+                </h3>
+                {sections.education ? (
+                  <Card className="mb-8">
+                    <CardContent className="p-6">
+                      <pre className="whitespace-pre-wrap text-gray-800 dark:text-gray-200 text-sm">
+                        {sections.education}
+                      </pre>
+                    </CardContent>
+                  </Card>
+                ) : (
+                  <div className="text-gray-500">
+                    No Education section found.
+                  </div>
+                )}
+              </div>
+            ))
+          ) : null}
+        </div>
+      </section>
+      */}
 
       {/* GitHub Activity Section */}
       <section className="py-20 bg-slate-50 dark:bg-[#232946]">
