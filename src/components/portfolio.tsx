@@ -18,14 +18,18 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
+import ThemeToggle from "@/components/ThemeToggle";
 
 // Sticky navigation for better UX
 const Navigation = () => (
-  <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b">
+  <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b dark:bg-[#181c2f] dark:text-white">
     <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div className="font-bold text-xl">Namrata</div>
+      <div className="font-bold text-xl dark:text-white">Namrata</div>
       <div className="hidden md:flex space-x-6">
-        <a href="#about" className="hover:text-blue-600 transition-colors">
+        <a
+          href="#about"
+          className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
+        >
           About
         </a>
         <a href="#projects" className="hover:text-blue-600 transition-colors">
@@ -218,18 +222,24 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
+      <ThemeToggle />
       {/* Hero Section */}
-      <section id="about" className="relative overflow-hidden bg-white pt-20">
+      <section
+        id="about"
+        className="relative overflow-hidden bg-white pt-20 dark:bg-gradient-to-br dark:from-[#181c2f] dark:to-[#232946]"
+      >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
         <div className="relative max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
             <div className="inline-flex items-center gap-2 mb-6">
               <span className="text-4xl">👋</span>
-              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent">
+              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-white dark:to-gray-300">
                 Hi there! I'm Namrata
               </h1>
             </div>
-            <p className="text-lg text-gray-600 mb-2">(she/her)</p>
+            <p className="text-lg text-gray-600 mb-2 dark:text-gray-300">
+              (she/her)
+            </p>
             <div className="max-w-3xl mx-auto">
               <p className="text-xl text-gray-700 leading-relaxed mb-8">
                 I'm currently exploring AI-augmented development workflows,
@@ -262,16 +272,18 @@ export default function Portfolio() {
       </section>
 
       {/* About Me Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50">
+      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f]">
         <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold mb-8 text-gray-900">About Me</h2>
+          <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
+            About Me
+          </h2>
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div className="space-y-6 text-left">
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   My Journey
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
                   I'm a passionate developer with a love for creating innovative
                   solutions that bridge the gap between technology and
                   real-world problems. My journey in tech began with curiosity
@@ -280,20 +292,20 @@ export default function Portfolio() {
                 </p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   Current Focus
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
                   Currently, I'm focused on exploring context-aware systems and
                   building scalable applications that leverage the best of cloud
                   technologies and modern development practices.
                 </p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3">
+                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   Beyond Code
                 </h3>
-                <p className="text-gray-700 leading-relaxed">
+                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
                   When I'm not coding, you'll find me exploring the latest in
                   AI/ML technologies, contributing to open-source projects, or
                   sharing knowledge through technical writing. I believe in the
@@ -314,13 +326,13 @@ export default function Portfolio() {
       </section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white">
+      <section id="skills" className="py-20 bg-white dark:bg-[#181c2f]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
               My Foundations Lie In
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Technologies and tools I work with
             </p>
           </div>
@@ -339,13 +351,13 @@ export default function Portfolio() {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-slate-50">
+      <section id="projects" className="py-20 bg-slate-50 dark:bg-[#232946]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
               Featured Projects
             </h2>
-            <p className="text-lg text-gray-600">
+            <p className="text-lg text-gray-600 dark:text-gray-300">
               Some of my recent work and contributions
             </p>
           </div>
@@ -358,7 +370,7 @@ export default function Portfolio() {
                 rel="noopener noreferrer"
                 className="block"
               >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white cursor-pointer">
+                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f] dark:text-gray-100 dark:shadow-blue-900/30">
                   <CardHeader>
                     <div className="flex items-start justify-between">
                       <CardTitle className="text-xl font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
@@ -399,7 +411,7 @@ export default function Portfolio() {
             >
               <Button
                 variant="outline"
-                className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent"
+                className="border-blue-200 text-blue-600 hover:bg-blue-50 bg-transparent dark:text-blue-400 dark:hover:bg-white dark:hover:text-blue-600"
               >
                 <Github className="w-4 h-4 mr-2" />
                 View All Projects
@@ -410,10 +422,10 @@ export default function Portfolio() {
       </section>
 
       {/* Certifications Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
               Certifications
             </h2>
             <p className="text-lg text-gray-600">
@@ -444,7 +456,7 @@ export default function Portfolio() {
       {/* Contact Section */}
       <section
         id="contact"
-        className="py-20 bg-gradient-to-r from-blue-600 to-purple-600"
+        className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-gray-900 dark:to-gray-800"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">Say Hello</h2>
@@ -543,7 +555,7 @@ export default function Portfolio() {
       </section>
 
       {/* Footer */}
-      <footer className="bg-gray-900 text-white py-8">
+      <footer className="bg-gray-900 text-white py-8 dark:bg-[#181c2f]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <p className="text-gray-400">
