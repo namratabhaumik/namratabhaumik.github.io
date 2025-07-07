@@ -1,3 +1,4 @@
+// NOTE: The GET endpoint is temporarily disabled due to deployment issues.
 export const runtime = "nodejs";
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
@@ -51,18 +52,18 @@ function extractSections(text: string) {
   return { work, education };
 }
 
-export async function GET(req: NextRequest) {
-  const results: any = {};
-  for (const file of RESUME_FILES) {
-    try {
-      const absPath = path.resolve(process.cwd(), file);
-      const data = fs.readFileSync(absPath);
-      const pdf = await pdfParse(data);
-      const sections = extractSections(pdf.text);
-      results[path.basename(file)] = sections;
-    } catch (e) {
-      results[path.basename(file)] = { error: "Failed to parse" };
-    }
-  }
-  return NextResponse.json(results);
-} 
+// export async function GET(req: NextRequest) {
+//   const results: any = {};
+//   for (const file of RESUME_FILES) {
+//     try {
+//       const absPath = path.resolve(process.cwd(), file);
+//       const data = fs.readFileSync(absPath);
+//       const pdf = await pdfParse(data);
+//       const sections = extractSections(pdf.text);
+//       results[path.basename(file)] = sections;
+//     } catch (e) {
+//       results[path.basename(file)] = { error: "Failed to parse" };
+//     }
+//   }
+//   return NextResponse.json(results);
+// } 
