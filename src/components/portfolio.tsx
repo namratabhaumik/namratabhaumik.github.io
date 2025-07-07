@@ -24,6 +24,7 @@ import ThemeToggle from "@/components/ThemeToggle";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import GithubMiniStats from "@/components/GithubMiniStats";
 
 // Sticky navigation for better UX
 const Navigation = () => (
@@ -504,6 +505,13 @@ export default function Portfolio() {
           </div>
         </div>
       </motion.section>
+
+      {/* GitHub Activity Section */}
+      <section className="py-20 bg-slate-50 dark:bg-[#232946]">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <GithubMiniStats />
+        </div>
+      </section>
 
       {/* Contact Section */}
       <motion.section
