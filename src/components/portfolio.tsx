@@ -1,3 +1,5 @@
+"use client";
+
 import {
   Github,
   Linkedin,
@@ -19,6 +21,8 @@ import {
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useState } from "react";
 
 // Sticky navigation for better UX
 const Navigation = () => (
@@ -219,13 +223,26 @@ export default function Portfolio() {
     },
   ];
 
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate loading
+    setTimeout(() => setIsLoading(false), 2000);
+  }, []);
+
+  const { scrollY } = useScroll();
+  const y = useTransform(scrollY, [0, 300], [0, 50]);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
       <ThemeToggle />
       {/* Hero Section */}
-      <section
-        id="about"
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative overflow-hidden bg-white pt-20 dark:bg-gradient-to-br dark:from-[#181c2f] dark:to-[#232946]"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
@@ -269,10 +286,15 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* About Me Section */}
-      <section className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f]">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f]"
+      >
         <div className="max-w-4xl mx-auto px-4 text-center">
           <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
             About Me
@@ -323,10 +345,16 @@ export default function Portfolio() {
             </div>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Skills Section */}
-      <section id="skills" className="py-20 bg-white dark:bg-[#181c2f]">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        id="skills"
+        className="py-20 bg-white dark:bg-[#181c2f]"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
@@ -341,17 +369,23 @@ export default function Portfolio() {
               <Badge
                 key={index}
                 variant="outline"
-                className={`${skill.color} px-4 py-2 text-sm font-medium border-2 hover:scale-105 transition-transform cursor-default`}
+                className={`${skill.color} px-4 py-2 text-sm font-medium border-2 transition-transform duration-200 hover:scale-110 hover:shadow-lg cursor-pointer`}
               >
                 {skill.name}
               </Badge>
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 bg-slate-50 dark:bg-[#232946]">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        id="projects"
+        className="py-20 bg-slate-50 dark:bg-[#232946]"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
@@ -361,44 +395,55 @@ export default function Portfolio() {
               Some of my recent work and contributions
             </p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {projects.map((project, index) => (
-              <Link
-                key={index}
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f] dark:text-gray-100 dark:shadow-blue-900/30">
-                  <CardHeader>
-                    <div className="flex items-start justify-between">
-                      <CardTitle className="text-xl font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
-                        {project.title}
-                      </CardTitle>
-                      <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
-                    </div>
-                  </CardHeader>
-                  <CardContent>
-                    <CardDescription className="text-gray-600 mb-4 leading-relaxed">
-                      {project.description}
-                    </CardDescription>
-                    <div className="flex flex-wrap gap-2">
-                      {project.tags.map((tag, tagIndex) => (
-                        <Badge
-                          key={tagIndex}
-                          variant="secondary"
-                          className="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </Link>
-            ))}
-          </div>
+          {isLoading ? (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {[...Array(3)].map((_, i) => (
+                <div
+                  key={i}
+                  className="h-48 bg-gray-200 dark:bg-gray-800 rounded-lg animate-pulse"
+                />
+              ))}
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {projects.map((project, index) => (
+                <Link
+                  key={index}
+                  href={project.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block"
+                >
+                  <Card className="group hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f] dark:text-gray-100 dark:shadow-blue-900/30">
+                    <CardHeader>
+                      <div className="flex items-start justify-between">
+                        <CardTitle className="text-xl font-semibold text-blue-600 group-hover:text-blue-700 transition-colors">
+                          {project.title}
+                        </CardTitle>
+                        <ExternalLink className="w-5 h-5 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                      </div>
+                    </CardHeader>
+                    <CardContent>
+                      <CardDescription className="text-gray-600 mb-4 leading-relaxed">
+                        {project.description}
+                      </CardDescription>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag, tagIndex) => (
+                          <Badge
+                            key={tagIndex}
+                            variant="secondary"
+                            className="text-xs bg-blue-50 text-blue-700 hover:bg-blue-100"
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          )}
           <div className="text-center mt-12">
             <p className="text-gray-600 mb-4">
               Would you like to read more about my projects and journey in tech
@@ -419,10 +464,15 @@ export default function Portfolio() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Certifications Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="py-20 bg-white dark:bg-gray-900"
+      >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
@@ -451,10 +501,13 @@ export default function Portfolio() {
             ))}
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Contact Section */}
-      <section
+      <motion.section
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
         id="contact"
         className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-gray-900 dark:to-gray-800"
       >
@@ -552,7 +605,7 @@ export default function Portfolio() {
             </Link>
           </div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Footer */}
       <footer className="bg-gray-900 text-white py-8 dark:bg-[#181c2f]">
