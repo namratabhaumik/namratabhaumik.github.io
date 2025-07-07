@@ -23,6 +23,7 @@ import Link from "next/link";
 import ThemeToggle from "@/components/ThemeToggle";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 // Sticky navigation for better UX
 const Navigation = () => (
@@ -226,7 +227,6 @@ export default function Portfolio() {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate loading
     setTimeout(() => setIsLoading(false), 2000);
   }, []);
 
@@ -337,9 +337,11 @@ export default function Portfolio() {
               </div>
             </div>
             <div className="flex justify-center">
-              <img
+              <Image
                 src="/profile.jpg"
                 alt="Namrata Bhaumik"
+                width={256}
+                height={256}
                 className="w-64 h-64 rounded-full object-cover shadow-lg"
               />
             </div>
