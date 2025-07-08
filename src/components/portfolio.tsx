@@ -57,7 +57,6 @@ const Navigation = () => (
   </nav>
 );
 
-console.log("Portfolio component mounted");
 export default function Portfolio() {
   const skills = [
     {
@@ -248,7 +247,6 @@ export default function Portfolio() {
         return res.json();
       })
       .then((data) => {
-        console.log("Fetched resume data:", data);
         setResumeData(data);
         setLoadingResume(false);
       })

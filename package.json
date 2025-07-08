@@ -8,7 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "type-check": "tsc --noEmit",
-    "export": "next build && next export",
+    "export": "next build",
     "deploy": "npm run export && gh-pages -d out"
   },
   "dependencies": {
