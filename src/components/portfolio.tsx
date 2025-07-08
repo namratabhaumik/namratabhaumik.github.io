@@ -57,6 +57,7 @@ const Navigation = () => (
   </nav>
 );
 
+console.log("Portfolio component mounted");
 export default function Portfolio() {
   const skills = [
     {
@@ -241,13 +242,18 @@ export default function Portfolio() {
 
   useEffect(() => {
     setLoadingResume(true);
-    fetch("/api/resume-data")
-      .then((res) => res.json())
+    fetch("/resume/resume.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
       .then((data) => {
+        console.log("Fetched resume data:", data);
         setResumeData(data);
         setLoadingResume(false);
       })
       .catch((e) => {
+        console.error("Resume fetch error:", e);
         setResumeError("Failed to load resume data");
         setLoadingResume(false);
       });
@@ -528,8 +534,7 @@ export default function Portfolio() {
         </div>
       </motion.section>
 
-      {/* Work Experience Section (Dynamic) */}
-      {/**
+      {/* Work Experience Section */}
       <section className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -554,32 +559,60 @@ export default function Portfolio() {
             </div>
           ) : resumeError ? (
             <div className="text-red-500 text-center">{resumeError}</div>
-          ) : resumeData ? (
-            Object.entries(resumeData).map(([file, sections]: any) => (
-              <div key={file} className="mb-12">
-                <h3 className="text-xl font-bold mb-4 text-blue-700 dark:text-blue-300">
-                  {file.replace(/_/g, " ").replace(/\.pdf$/, "")}
-                </h3>
-                {sections.work ? (
-                  <Card className="mb-8">
-                    <CardContent className="p-6">
-                      <pre className="whitespace-pre-wrap text-gray-800 dark:text-gray-200 text-sm">
-                        {sections.work}
-                      </pre>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <div className="text-gray-500">No Work Experience found.</div>
-                )}
-              </div>
-            ))
+          ) : resumeData?.experience ? (
+            <div className="space-y-8">
+              {resumeData.experience.map((exp: any, idx: number) => (
+                <Card
+                  key={idx}
+                  className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600"
+                >
+                  <CardContent className="p-8">
+                    <div className="flex flex-col lg:flex-row lg:items-start gap-6">
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
+                          <Building className="w-8 h-8 text-white" />
+                        </div>
+                      </div>
+                      <div className="flex-1">
+                        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
+                          <div>
+                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                              {exp.role}
+                            </h3>
+                            <p className="text-lg text-blue-600 font-semibold">
+                              {exp.company}
+                            </p>
+                          </div>
+                          <div className="flex flex-col lg:items-end text-sm text-gray-500 mt-2 lg:mt-0">
+                            <div className="flex items-center gap-1 mb-1">
+                              <Calendar className="w-4 h-4" />
+                              <span>{exp.timeline}</span>
+                            </div>
+                            <div className="flex items-center gap-1">
+                              <MapPin className="w-4 h-4" />
+                              <span>{exp.location}</span>
+                            </div>
+                          </div>
+                        </div>
+                        <ul className="space-y-2 text-gray-700 mb-4">
+                          {exp.description.map((desc: string, i: number) => (
+                            <li key={i} className="flex items-start gap-2">
+                              <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
+                              <span>{desc.replace(/\[cite.*?\]/g, "")}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           ) : null}
         </div>
       </section>
-      */}
 
-      {/* Education Section (Dynamic) */}
-      {/**
+      {/* Education Section */}
       <section className="py-20 bg-slate-50 dark:bg-[#232946]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
@@ -604,31 +637,47 @@ export default function Portfolio() {
             </div>
           ) : resumeError ? (
             <div className="text-red-500 text-center">{resumeError}</div>
-          ) : resumeData ? (
-            Object.entries(resumeData).map(([file, sections]: any) => (
-              <div key={file} className="mb-12">
-                <h3 className="text-xl font-bold mb-4 text-purple-700 dark:text-purple-300">
-                  {file.replace(/_/g, " ").replace(/\.pdf$/, "")}
-                </h3>
-                {sections.education ? (
-                  <Card className="mb-8">
-                    <CardContent className="p-6">
-                      <pre className="whitespace-pre-wrap text-gray-800 dark:text-gray-200 text-sm">
-                        {sections.education}
-                      </pre>
-                    </CardContent>
-                  </Card>
-                ) : (
-                  <div className="text-gray-500">
-                    No Education section found.
-                  </div>
-                )}
-              </div>
-            ))
+          ) : resumeData?.education ? (
+            <div className="grid md:grid-cols-2 gap-8">
+              {resumeData.education.map((edu: any, idx: number) => (
+                <Card
+                  key={idx}
+                  className="hover:shadow-xl transition-all duration-300 bg-white"
+                >
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-4 mb-6">
+                      <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-blue-600 rounded-xl flex items-center justify-center flex-shrink-0">
+                        <GraduationCap className="w-8 h-8 text-white" />
+                      </div>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                          {edu.degree}
+                        </h3>
+                        <p className="text-lg text-purple-600 font-semibold mb-2">
+                          {edu.university}
+                        </p>
+                        <div className="flex flex-col gap-1 text-sm text-gray-500 mb-4">
+                          <div className="flex items-center gap-1">
+                            <Calendar className="w-4 h-4" />
+                            <span>{edu.timeline}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="w-4 h-4" />
+                            <span>{edu.location}</span>
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <span>GPA: {edu.gpa}</span>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
           ) : null}
         </div>
       </section>
-      */}
 
       {/* GitHub Activity Section */}
       <section className="py-20 bg-slate-50 dark:bg-[#232946]">
