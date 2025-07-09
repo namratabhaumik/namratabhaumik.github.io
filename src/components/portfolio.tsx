@@ -134,31 +134,78 @@ export default function Portfolio() {
         transition={{ duration: 0.7, ease: "easeOut" }}
         className="relative overflow-hidden bg-white pt-20 dark:bg-gradient-to-br dark:from-[#181c2f] dark:to-[#232946]"
       >
+        {/* Background Elements */}
         <div className="absolute inset-0 bg-gradient-to-r from-blue-600/5 to-purple-600/5"></div>
+        <div className="absolute top-20 left-10 w-72 h-72 bg-blue-400/10 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-400/10 rounded-full blur-3xl"></div>
+
         <div className="relative max-w-6xl mx-auto px-4 py-20 sm:px-6 lg:px-8">
           <div className="text-center">
-            <div className="inline-flex items-center gap-2 mb-6">
-              <span className="text-4xl">👋</span>
-              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-900 to-gray-600 bg-clip-text text-transparent dark:from-white dark:to-gray-300">
+            {/* Enhanced Greeting */}
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ delay: 0.2, duration: 0.5 }}
+              className="inline-flex items-center gap-3 mb-6"
+            >
+              <span className="text-5xl animate-bounce">👋</span>
+              <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-gray-900 via-blue-800 to-purple-800 bg-clip-text text-transparent dark:from-white dark:via-blue-300 dark:to-purple-300">
                 Hi there! I'm Namrata
               </h1>
-            </div>
-            <p className="text-lg text-gray-600 mb-2 dark:text-gray-300">
-              (she/her)
-            </p>
-            <div className="max-w-3xl mx-auto">
-              <p className="text-xl text-gray-700 leading-relaxed mb-8">
-                I'm currently exploring AI-augmented development workflows,
-                including LLM-powered tools, prompt engineering, and the
-                evolving landscape of context-aware systems. Hit me up for
-                collaborations, discussions, events, or workshops related to
-                Agentic Software Development or any technology in general!
-              </p>
-              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            </motion.div>
+
+            {/* Enhanced Description */}
+            <div className="max-w-4xl mx-auto">
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                className="space-y-6 mb-10"
+              >
+                {/* Main intro with highlighted keywords (plain font-semibold, not gradient) */}
+                <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
+                  I'm currently exploring{" "}
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                    AI-augmented development workflows
+                  </span>
+                  , including{" "}
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                    LLM-powered tools
+                  </span>
+                  , prompt engineering, and the evolving landscape of{" "}
+                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                    context-aware systems
+                  </span>
+                  .
+                </p>
+
+                {/* Call to action with personality (centered, no gradient box) */}
+                <div className="text-center">
+                  <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                    Hit me up for collaborations, discussions, events, or
+                    workshops related to{" "}
+                    <span className="font-semibold text-gray-900 dark:text-gray-100">
+                      Agentic Software Development
+                    </span>{" "}
+                    or any technology in general!
+                  </p>
+                </div>
+              </motion.div>
+
+              {/* Enhanced Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.5 }}
+                className="flex flex-col sm:flex-row gap-4 justify-center"
+              >
                 <Link href="#contact">
-                  <Button size="lg" className="bg-blue-600 hover:bg-blue-700">
-                    <Mail className="w-4 h-4 mr-2" />
-                    Get In Touch
+                  <Button
+                    size="lg"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                  >
+                    <Mail className="w-5 h-5 mr-2" />
+                    Let's Connect
                   </Button>
                 </Link>
                 <Link
@@ -166,12 +213,16 @@ export default function Portfolio() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <Button variant="outline" size="lg">
-                    <Github className="w-4 h-4 mr-2" />
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    className="border-2 border-gray-300 hover:border-blue-500 hover:bg-blue-50 dark:hover:bg-blue-900/20 transition-all duration-300 group bg-transparent"
+                  >
+                    <Github className="w-5 h-5 mr-2 group-hover:rotate-12 transition-transform" />
                     View My Work
                   </Button>
                 </Link>
-              </div>
+              </motion.div>
             </div>
           </div>
         </div>
@@ -188,32 +239,32 @@ export default function Portfolio() {
         {/* Floating skill badges in background */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-20 left-10 opacity-20">
-            <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs">
+            <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-lg px-4 py-2 rounded-xl">
               System Design
             </Badge>
           </div>
           <div className="absolute top-32 right-16 opacity-15">
-            <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200 text-xs">
+            <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200 text-lg px-4 py-2 rounded-xl">
               Cloud-Native
             </Badge>
           </div>
           <div className="absolute top-48 left-20 opacity-25">
-            <Badge className="bg-green-100 text-green-700 border-green-200 text-xs">
+            <Badge className="bg-green-100 text-green-700 border-green-200 text-lg px-4 py-2 rounded-xl">
               DevOps
             </Badge>
           </div>
           <div className="absolute bottom-40 right-12 opacity-20">
-            <Badge className="bg-purple-100 text-purple-700 border-purple-200 text-xs">
+            <Badge className="bg-purple-100 text-purple-700 border-purple-200 text-lg px-4 py-2 rounded-xl">
               Performance
             </Badge>
           </div>
           <div className="absolute bottom-60 left-16 opacity-15">
-            <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-xs">
+            <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-lg px-4 py-2 rounded-xl">
               Problem Solving
             </Badge>
           </div>
           <div className="absolute top-60 right-32 opacity-25">
-            <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-xs">
+            <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-lg px-4 py-2 rounded-xl">
               Automation
             </Badge>
           </div>
@@ -234,14 +285,11 @@ export default function Portfolio() {
                   solutions that bridge the gap between technology and
                   real-world problems. My journey in tech began with curiosity
                   and has evolved into a deep appreciation for{" "}
-                  <Badge className="inline-flex mx-1 bg-cyan-50 text-cyan-700 border-cyan-200 text-xs px-2 py-1">
+                  <span className="font-semibold">
                     cloud-native architectures
-                  </Badge>{" "}
+                  </span>{" "}
                   and{" "}
-                  <Badge className="inline-flex mx-1 bg-purple-50 text-purple-700 border-purple-200 text-xs px-2 py-1">
-                    AI-augmented workflows
-                  </Badge>
-                  .
+                  <span className="font-semibold">AI-augmented workflows</span>.
                 </div>
               </div>
               <div>
@@ -251,17 +299,11 @@ export default function Portfolio() {
                 <div className="text-gray-700 leading-relaxed dark:text-gray-300">
                   Currently, I'm focused on exploring context-aware systems and
                   building scalable applications. I excel in{" "}
-                  <Badge className="inline-flex mx-1 bg-blue-50 text-blue-700 border-blue-200 text-xs px-2 py-1">
-                    system design
-                  </Badge>
-                  ,{" "}
-                  <Badge className="inline-flex mx-1 bg-green-50 text-green-700 border-green-200 text-xs px-2 py-1">
-                    DevOps automation
-                  </Badge>
-                  , and{" "}
-                  <Badge className="inline-flex mx-1 bg-orange-50 text-orange-700 border-orange-200 text-xs px-2 py-1">
+                  <span className="font-semibold">system design</span>,{" "}
+                  <span className="font-semibold">DevOps automation</span>, and{" "}
+                  <span className="font-semibold">
                     performance optimization
-                  </Badge>{" "}
+                  </span>{" "}
                   to drive efficiency and innovation.
                 </div>
               </div>
@@ -273,14 +315,10 @@ export default function Portfolio() {
                   When I'm not coding, you'll find me exploring the latest in
                   AI/ML technologies, contributing to open-source projects, or
                   sharing knowledge through{" "}
-                  <Badge className="inline-flex mx-1 bg-indigo-50 text-indigo-700 border-indigo-200 text-xs px-2 py-1">
-                    technical leadership
-                  </Badge>
-                  . I believe in the power of{" "}
-                  <Badge className="inline-flex mx-1 bg-pink-50 text-pink-700 border-pink-200 text-xs px-2 py-1">
-                    collaboration
-                  </Badge>{" "}
-                  and continuous learning to drive meaningful innovation.
+                  <span className="font-semibold">technical leadership</span>. I
+                  believe in the power of{" "}
+                  <span className="font-semibold">collaboration</span> and
+                  continuous learning to drive meaningful innovation.
                 </div>
               </div>
             </div>
