@@ -41,8 +41,8 @@ export default function Navigation() {
 
   const navItems = [
     { id: "about", label: "About" },
-    { id: "skills", label: "Skills" },
     { id: "projects", label: "Projects" },
+    { id: "certifications", label: "Certifications" },
     { id: "experience", label: "Experience" },
     { id: "education", label: "Education" },
     { id: "github", label: "GitHub" },

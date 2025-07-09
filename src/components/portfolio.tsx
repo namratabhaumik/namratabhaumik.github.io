@@ -33,125 +33,6 @@ import WorkExperienceCarousel from "@/components/work-experience-carousel";
 import GithubMiniStats from "@/components/GithubMiniStats";
 
 export default function Portfolio() {
-  const skills = [
-    {
-      name: "Django",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "React",
-      color: "bg-cyan-100 text-cyan-800 border-cyan-200",
-    },
-    {
-      name: "Python",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Java",
-      color: "bg-orange-100 text-orange-800 border-orange-200",
-    },
-    {
-      name: "JavaScript",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      name: "MySQL",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "ElasticSearch",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "PostgreSQL",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Azure",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "GitHub",
-      color: "bg-gray-100 text-gray-800 border-gray-200",
-    },
-    {
-      name: "Power BI",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      name: "Jira",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Postman",
-      color: "bg-orange-100 text-orange-800 border-orange-200",
-    },
-    {
-      name: "Android",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "D3.js",
-      color: "bg-orange-100 text-orange-800 border-orange-200",
-    },
-    {
-      name: "Figma",
-      color: "bg-purple-100 text-purple-800 border-purple-200",
-    },
-    {
-      name: "AWS",
-      color: "bg-orange-100 text-orange-800 border-orange-200",
-    },
-    {
-      name: "Google Cloud",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Flask",
-      color: "bg-gray-100 text-gray-800 border-gray-200",
-    },
-    {
-      name: "Terraform",
-      color: "bg-purple-100 text-purple-800 border-purple-200",
-    },
-    {
-      name: "FastAPI",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "Firebase",
-      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
-    },
-    {
-      name: "TypeScript",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Next.js",
-      color: "bg-gray-100 text-gray-800 border-gray-200",
-    },
-    {
-      name: "Node.js",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "Docker",
-      color: "bg-blue-100 text-blue-800 border-blue-200",
-    },
-    {
-      name: "Kubernetes",
-      color: "bg-purple-100 text-purple-800 border-purple-200",
-    },
-    {
-      name: "MongoDB",
-      color: "bg-green-100 text-green-800 border-green-200",
-    },
-    {
-      name: "Unity3D",
-      color: "bg-gray-100 text-gray-800 border-gray-200",
-    },
-  ];
-
   const projects = [
     {
       title: "ExpenseTrackerExtended",
@@ -235,6 +116,12 @@ export default function Portfolio() {
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 50]);
 
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+  if (!mounted) return null; // or render only the static content
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
@@ -296,9 +183,43 @@ export default function Portfolio() {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f]"
+        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f] relative overflow-hidden"
       >
-        <div className="max-w-4xl mx-auto px-4 text-center">
+        {/* Floating skill badges in background */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-20 left-10 opacity-20">
+            <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-xs">
+              System Design
+            </Badge>
+          </div>
+          <div className="absolute top-32 right-16 opacity-15">
+            <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200 text-xs">
+              Cloud-Native
+            </Badge>
+          </div>
+          <div className="absolute top-48 left-20 opacity-25">
+            <Badge className="bg-green-100 text-green-700 border-green-200 text-xs">
+              DevOps
+            </Badge>
+          </div>
+          <div className="absolute bottom-40 right-12 opacity-20">
+            <Badge className="bg-purple-100 text-purple-700 border-purple-200 text-xs">
+              Performance
+            </Badge>
+          </div>
+          <div className="absolute bottom-60 left-16 opacity-15">
+            <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-xs">
+              Problem Solving
+            </Badge>
+          </div>
+          <div className="absolute top-60 right-32 opacity-25">
+            <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-xs">
+              Automation
+            </Badge>
+          </div>
+        </div>
+
+        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
           <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
             About Me
           </h2>
@@ -308,35 +229,59 @@ export default function Portfolio() {
                 <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   My Journey
                 </h3>
-                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
                   I'm a passionate developer with a love for creating innovative
                   solutions that bridge the gap between technology and
                   real-world problems. My journey in tech began with curiosity
-                  and has evolved into a deep appreciation for cloud-native
-                  architectures and AI-augmented development workflows.
-                </p>
+                  and has evolved into a deep appreciation for{" "}
+                  <Badge className="inline-flex mx-1 bg-cyan-50 text-cyan-700 border-cyan-200 text-xs px-2 py-1">
+                    cloud-native architectures
+                  </Badge>{" "}
+                  and{" "}
+                  <Badge className="inline-flex mx-1 bg-purple-50 text-purple-700 border-purple-200 text-xs px-2 py-1">
+                    AI-augmented workflows
+                  </Badge>
+                  .
+                </div>
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   Current Focus
                 </h3>
-                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
                   Currently, I'm focused on exploring context-aware systems and
-                  building scalable applications that leverage the best of cloud
-                  technologies and modern development practices.
-                </p>
+                  building scalable applications. I excel in{" "}
+                  <Badge className="inline-flex mx-1 bg-blue-50 text-blue-700 border-blue-200 text-xs px-2 py-1">
+                    system design
+                  </Badge>
+                  ,{" "}
+                  <Badge className="inline-flex mx-1 bg-green-50 text-green-700 border-green-200 text-xs px-2 py-1">
+                    DevOps automation
+                  </Badge>
+                  , and{" "}
+                  <Badge className="inline-flex mx-1 bg-orange-50 text-orange-700 border-orange-200 text-xs px-2 py-1">
+                    performance optimization
+                  </Badge>{" "}
+                  to drive efficiency and innovation.
+                </div>
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
                   Beyond Code
                 </h3>
-                <p className="text-gray-700 leading-relaxed dark:text-gray-300">
+                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
                   When I'm not coding, you'll find me exploring the latest in
                   AI/ML technologies, contributing to open-source projects, or
-                  sharing knowledge through technical writing. I believe in the
-                  power of collaboration and continuous learning to drive
-                  meaningful innovation.
-                </p>
+                  sharing knowledge through{" "}
+                  <Badge className="inline-flex mx-1 bg-indigo-50 text-indigo-700 border-indigo-200 text-xs px-2 py-1">
+                    technical leadership
+                  </Badge>
+                  . I believe in the power of{" "}
+                  <Badge className="inline-flex mx-1 bg-pink-50 text-pink-700 border-pink-200 text-xs px-2 py-1">
+                    collaboration
+                  </Badge>{" "}
+                  and continuous learning to drive meaningful innovation.
+                </div>
               </div>
             </div>
             <div className="flex justify-center">
@@ -348,37 +293,6 @@ export default function Portfolio() {
                 className="w-64 h-64 rounded-full object-cover shadow-lg"
               />
             </div>
-          </div>
-        </div>
-      </motion.section>
-
-      {/* Skills Section */}
-      <motion.section
-        id="skills"
-        initial={{ opacity: 0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true, amount: 0.2 }}
-        className="py-20 bg-white dark:bg-[#181c2f]"
-      >
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
-              My Foundations Lie In
-            </h2>
-            <p className="text-lg text-gray-600 dark:text-gray-300">
-              Technologies and tools I work with
-            </p>
-          </div>
-          <div className="flex flex-wrap justify-center gap-3">
-            {skills.map((skill, index) => (
-              <Badge
-                key={index}
-                variant="outline"
-                className={`${skill.color} px-4 py-2 text-sm font-medium border-2 transition-transform duration-200 hover:scale-110 hover:shadow-lg cursor-pointer`}
-              >
-                {skill.name}
-              </Badge>
-            ))}
           </div>
         </div>
       </motion.section>
@@ -654,36 +568,6 @@ export default function Portfolio() {
               >
                 <Mail className="w-5 h-5 mr-2" />
                 Email
-              </Button>
-            </Link>
-
-            <Link
-              href="https://discordapp.com/users/namrata2599"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-white text-blue-600 hover:bg-blue-50"
-              >
-                <MessageCircle className="w-5 h-5 mr-2" />
-                Discord
-              </Button>
-            </Link>
-
-            <Link
-              href="https://www.instagram.com/missing.nemo/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button
-                size="lg"
-                variant="secondary"
-                className="bg-white text-blue-600 hover:bg-blue-50"
-              >
-                <Instagram className="w-5 h-5 mr-2" />
-                Instagram
               </Button>
             </Link>
 
