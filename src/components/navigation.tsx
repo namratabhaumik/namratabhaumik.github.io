@@ -64,8 +64,8 @@ export default function Navigation() {
         className={cn(
           "fixed top-1 left-0 right-0 z-40 transition-all duration-300",
           isScrolled
-            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200"
-            : "bg-transparent"
+            ? "bg-white/95 backdrop-blur-md shadow-lg border-b border-gray-200 dark:bg-[#181c2f] dark:border-none"
+            : "bg-transparent dark:bg-[#181c2f]"
         )}
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -87,8 +87,8 @@ export default function Navigation() {
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-blue-600",
-                    isScrolled ? "text-gray-700" : "text-gray-600"
+                    "text-sm font-medium transition-colors hover:text-blue-500 dark:hover:text-blue-400",
+                    "text-gray-700 dark:text-gray-200"
                   )}
                 >
                   {item.label}

@@ -152,13 +152,17 @@ export default function WorkExperienceCarousel() {
                       <div className="flex-1">
                         <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
                           <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-1">
+                            <h3 className="text-xl font-bold text-gray-900 mb-1 dark:text-white">
                               {experience.role}
                             </h3>
                             <p
-                              className="text-lg font-semibold"
+                              className="text-lg font-semibold text-blue-700 dark:text-blue-300"
                               style={{
-                                color: preset.gradientFrom.replace("from-", ""),
+                                color: !(
+                                  "dark" in document.documentElement.classList
+                                )
+                                  ? preset.gradientFrom.replace("from-", "")
+                                  : undefined,
                               }}
                             >
                               {experience.company}
@@ -175,7 +179,7 @@ export default function WorkExperienceCarousel() {
                             </div>
                           </div>
                         </div>
-                        <ul className="space-y-2 text-gray-700 mb-4">
+                        <ul className="space-y-2 text-gray-700 mb-4 dark:text-gray-100">
                           {experience.description.map(
                             (item: string, index: number) => (
                               <li
@@ -225,21 +229,21 @@ export default function WorkExperienceCarousel() {
       <Button
         variant="outline"
         size="icon"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg z-10"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/80 dark:hover:bg-gray-700/80 backdrop-blur-sm hover:bg-white shadow-lg z-10 border-none"
         onClick={goToPrevious}
         aria-label="Previous experience"
       >
-        <ChevronLeft className="w-4 h-4" />
+        <ChevronLeft className="w-4 h-4 text-gray-600 dark:text-gray-200" />
       </Button>
 
       <Button
         variant="outline"
         size="icon"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 backdrop-blur-sm hover:bg-white shadow-lg z-10"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/90 dark:bg-gray-800/80 dark:hover:bg-gray-700/80 backdrop-blur-sm hover:bg-white shadow-lg z-10 border-none"
         onClick={goToNext}
         aria-label="Next experience"
       >
-        <ChevronRight className="w-4 h-4" />
+        <ChevronRight className="w-4 h-4 text-gray-600 dark:text-gray-200" />
       </Button>
 
       {/* Dot Indicators */}

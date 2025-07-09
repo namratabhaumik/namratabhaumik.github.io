@@ -517,7 +517,7 @@ export default function Portfolio() {
                         <GraduationCap className="w-8 h-8 text-white" />
                       </div>
                       <div className="flex-1">
-                        <h3 className="text-xl font-bold text-gray-900 mb-2">
+                        <h3 className="text-xl font-bold text-gray-900 mb-2 dark:text-white">
                           {edu.degree}
                         </h3>
                         <p className="text-lg text-purple-600 font-semibold mb-2">
