@@ -640,7 +640,7 @@ export default function Portfolio() {
               {resumeData.education.map((edu: any, idx: number) => (
                 <Card
                   key={idx}
-                  className="hover:shadow-xl transition-all duration-300 bg-white"
+                  className="hover:shadow-xl transition-all duration-300 bg-white dark:bg-[#181c2f] dark:text-gray-100"
                 >
                   <CardContent className="p-8">
                     <div className="flex items-start gap-4 mb-6">
