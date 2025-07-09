@@ -25,37 +25,11 @@ import {
 } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
-import ThemeToggle from "@/components/ThemeToggle";
+import Navigation from "@/components/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import GithubMiniStats from "@/components/GithubMiniStats";
-
-// Sticky navigation for better UX
-const Navigation = () => (
-  <nav className="fixed top-0 w-full bg-white/90 backdrop-blur-md z-50 border-b dark:bg-[#181c2f] dark:text-white">
-    <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div className="font-bold text-xl dark:text-white">Namrata</div>
-      <div className="hidden md:flex space-x-6">
-        <a
-          href="#about"
-          className="hover:text-blue-600 dark:hover:text-blue-400 transition-colors"
-        >
-          About
-        </a>
-        <a href="#projects" className="hover:text-blue-600 transition-colors">
-          Projects
-        </a>
-        <a href="#skills" className="hover:text-blue-600 transition-colors">
-          Skills
-        </a>
-        <a href="#contact" className="hover:text-blue-600 transition-colors">
-          Contact
-        </a>
-      </div>
-    </div>
-  </nav>
-);
 
 export default function Portfolio() {
   const skills = [
@@ -263,9 +237,9 @@ export default function Portfolio() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
       <Navigation />
-      <ThemeToggle />
       {/* Hero Section */}
       <motion.section
+        id="hero"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -317,6 +291,7 @@ export default function Portfolio() {
 
       {/* About Me Section */}
       <motion.section
+        id="about"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -378,10 +353,10 @@ export default function Portfolio() {
 
       {/* Skills Section */}
       <motion.section
+        id="skills"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        id="skills"
         className="py-20 bg-white dark:bg-[#181c2f]"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -409,10 +384,10 @@ export default function Portfolio() {
 
       {/* Projects Section */}
       <motion.section
+        id="projects"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        id="projects"
         className="py-20 bg-slate-50 dark:bg-[#232946]"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -497,6 +472,7 @@ export default function Portfolio() {
 
       {/* Certifications Section */}
       <motion.section
+        id="certifications"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
@@ -533,7 +509,7 @@ export default function Portfolio() {
       </motion.section>
 
       {/* Work Experience Section */}
-      <section className="py-20 bg-white dark:bg-gray-900">
+      <section id="experience" className="py-20 bg-white dark:bg-gray-900">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -611,7 +587,7 @@ export default function Portfolio() {
       </section>
 
       {/* Education Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#232946]">
+      <section id="education" className="py-20 bg-slate-50 dark:bg-[#232946]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <div className="flex items-center justify-center gap-3 mb-4">
@@ -678,7 +654,7 @@ export default function Portfolio() {
       </section>
 
       {/* GitHub Activity Section */}
-      <section className="py-20 bg-slate-50 dark:bg-[#232946]">
+      <section id="github" className="py-20 bg-slate-50 dark:bg-[#232946]">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <GithubMiniStats />
         </div>
@@ -686,10 +662,10 @@ export default function Portfolio() {
 
       {/* Contact Section */}
       <motion.section
+        id="contact"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        id="contact"
         className="py-20 bg-gradient-to-r from-blue-600 to-purple-600 dark:from-gray-900 dark:to-gray-800"
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">

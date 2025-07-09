@@ -72,13 +72,11 @@
       "timeline": "April '25 - June '25",
       "location": "Toronto, ON, Canada",
       "description": [
-        "Collaborated directly with the founders post-MVP to build, test, and scale backend features of the software platform, working across fast-moving sprints and shifting priorities.",
-        "Led backend migration from old monorepo architecture to new modular polyrepo architecture leveraging AI chatbots (OpenAI, Grok, Claude, Gemini) to increase platform stability, optimize user workflows, and experiment with LLM and LRM - augmented development.",
-        "Accelerated feature delivery by leveraging LLM-assisted tools like Cursor IDE and NotebookLM for code generation, documentation, and rapid prototyping in a high-pressure environment.",
-        "Built RESTful APIs and microservices using Python, FastAPI, Firestore, BigQuery, Cloud Run, Cloud Function, Pub/Sub, Cloud Build, GAR, WIF ensuring smooth data ingestion, transformation, and secure file exports.",
-        "Designed and executed robust test strategies with Pytest (unit + integration), mocking external services (GCP components) to enable end-to-end smoke testing and ensure deployment readiness.",
-        "Owned full-stack developer workflows, GitLab CI/CD, Docker, and infrastructure planning with Terraform.",
-        "Designed and tweaked system architectural decisions, authored testing/feature plans in Markdown, and contributed to agile sprint planning and daily team operations via Slack and ClickUp"
+        "Led backend migration to a modular polyrepo microservices architecture using Python, FastAPI, and GCP services (Firestore, BigQuery, Cloud Run, Cloud Functions, Pub/Sub).",
+        "Accelerated feature delivery by leveraging AI chatbots (OpenAI, Grok, Claude, Gemini) and LLM-assisted tools (Cursor IDE, NotebookLM) for code generation and rapid prototyping.",
+        "Built scalable RESTful APIs and microservices, ensuring smooth data ingestion, transformation, and secure file exports.",
+        "Designed and executed robust test strategies (Pytest) and owned full-stack developer workflows, including GitLab CI/CD, Docker, and Terraform.",
+        "Contributed to system architectural decisions, agile sprint planning, and daily team operations."
       ]
     },
     {
@@ -87,14 +85,10 @@
       "timeline": "September '24 - December '24",
       "location": "Halifax, NS, Canada",
       "description": [
-        "Developed a Virtual Reality (VR) evacuation simulation game to experiment with and analyze pedestrian behavior during fire emergencies in Downtown Halifax, focusing on real-world emergency response strategies",
-        "Designed a 3D model of Halifax in collaboration with an Urban Design student using SketchUp, featuring detailed cityscapes with buildings, streets, buses, trees, and evacuation points, later integrated into Unity for an immersive environment.",
-        "Implemented VR interactivity using Oculus Quest 2 and Unity's XR Toolkit, enabling players to experience evacuation scenarios firsthand with realistic elements such as fire sounds, crowd voices, and dynamic environmental cues.",
-        "Engineered 12 distinct evacuation scenarios with varying levels of guidance-ranging from structured evacuation signs to pedestrian voice cues-challenging players to adapt to unpredictable, real-life-like emergency situations.",
-        "Programmed pedestrian AI behavior using Unity's CharacterControllers, Rigidbodies, and Colliders to simulate realistic crowd dynamics, including collision avoidance, varying movement speeds, and interactive voice prompts guiding the player.",
-        "Developed dual player modes: a standard player with free movement using VR thumbsticks/buttons and an accessibility-focused wheelchair mode with controlled directional movement, enhancing inclusivity in gameplay.",
-        "Integrated real-time data tracking and analytics, capturing metrics such as game duration, distance traveled, proximity to evacuation points, and critical decision-making moments, with session data exported in CSV format for behavioral analysis.",
-        "Overcame technical challenges related to Oculus Quest integration, performance optimization for complex pedestrian interactions, and real-time data logging, enhancing both the research validity and user experience."
+        "Developed a Virtual Reality (VR) evacuation simulation game (Unity, Oculus Quest 2) to analyze pedestrian behavior during fire emergencies in downtown Halifax.",
+        "Designed a detailed 3D city model and implemented VR interactivity with realistic environmental cues and 12 distinct evacuation scenarios.",
+        "Programmed pedestrian AI behavior to simulate realistic crowd dynamics and developed dual player modes, including an accessibility-focused wheelchair mode.",
+        "Integrated real-time data tracking for behavioral analysis, overcoming technical challenges in Oculus Quest integration and performance optimization."
       ]
     },
     {
@@ -103,25 +97,11 @@
       "timeline": "July, 2021-July, 2023",
       "location": "Bangalore, India",
       "description": [
-        "Optimized Wiki Searchability with Elasticsearch: Spearheaded the integration of Elasticsearch into Cerner's internal wiki page search functionality. This enhancement significantly improved search speed and accuracy, ultimately reducing the onboarding time for new hires by 40%.",
-        "Collaborated with cross-functional teams to understand user requirements, designed the solution architecture primarily using Python's BeautifulSoup library, and implemented indexing strategies to ensure seamless search experiences across large datasets.",
-        "End-to-End Ownership of Python-Django Automation Framework: Took complete ownership of an automation framework built on Python and Django. Led the design, development, and implementation of the system, which scaled to support over 430 clinical data solutions. By optimizing backend processes and refining system architecture, the solution reduced clinical data turnaround time by 5 days.",
-        "Applied best practices in software development and conducted rigorous testing to ensure stability and scalability.",
-        "Integrated RAPID APIs for Enhanced Search Performance: Integrated the RAPID API platform into existing Django pipelines to automate data retrieval. This integration enhanced internal clients' ability to access real-time data, improving search performance by 20%.",
-        "Managed API security keys, ensured proper data handling, and worked closely with the security team to adhere to best practices.",
-        "AJAX Integration in MySQL for Improved Data Processing: Reduced data processing time by 30% by incorporating AJAX into existing data pipelines. This optimization enabled seamless handling of large datasets in MySQL servers, significantly improving system responsiveness.",
-        "Additionally, optimized queries and data retrieval mechanisms in MySQL, enhancing database performance and reducing query execution time.",
-        "Efficient Data Fetching from PostgreSQL in Django: Worked closely with the backend team to re-architect data fetching from PostgreSQL into Django, ensuring smooth interactions and minimizing delays during high-load operations. Improved query performance and database interactions, optimizing data retrieval for better system efficiency.",
-        "Designed Interactive Power BI Dashboards: Developed and designed interactive Power BI dashboards using PowerQuery to track employee training schedules. The visually engaging dashboards enhanced usability and tracking efficiency by 50%, allowing associates and managers to easily visualize and update training data.",
-        "The project involved close collaboration with business analysts and end users to ensure the reports addressed critical business needs and provided actionable insights.",
-        "Collaborative Problem-Solving and Cross-Functional Communication: Collaborated closely with cross-functional teams, including data engineers, client teams, and product managers, to ensure alignment on project goals and timelines.",
-        "Regularly participated in team (scrum) meetings and sprint planning sessions, contributing to the continuous improvement of processes and delivering high-impact solutions on time.",
-        "Actively mentored junior engineers and shared knowledge about best practices in coding and system design.",
-        "Continuous Learning and Innovation: Constantly sought opportunities to learn new technologies and improve existing systems.",
-        "Contributed to internal technical discussions and code reviews, where I provided feedback and suggested optimizations to improve code efficiency and maintainability.",
-        "Embraced an Agile development environment, completing multiple projects in two-week sprints while maintaining a high standard of quality.",
-        "Data Migration to Microsoft Azure: Led data migration from SQL databases to Microsoft Azure, ensuring seamless integration and optimizing cloud storage for our Django-based website.",
-        "Additionally, contributed to strategizing the website's migration to Azure hosting for improved scalability and performance."
+        "Optimized internal Wiki searchability by integrating Elasticsearch, improving speed and accuracy, and reducing new hire onboarding time by 40%.",
+        "Owned and scaled a Python-Django automation framework supporting over 430 clinical data solutions, reducing data turnaround time by 5 days.",
+        "Integrated RAPID APIs and optimized database interactions (MySQL, PostgreSQL) for enhanced search performance and data processing efficiency.",
+        "Designed interactive Power BI dashboards to track employee training schedules, increasing tracking efficiency by 50%.",
+        "Led data migration from SQL databases to Microsoft Azure, ensuring seamless integration and optimizing cloud storage."
       ]
     },
     {
@@ -130,27 +110,10 @@
       "timeline": "Jan, 2021-July, 2021",
       "location": "Bangalore, India",
       "description": [
-        "Developed a RESTful API Workflow for GitHub Issue Management: Took on the responsibility of developing a scalable backend API workflow to streamline GitHub issue management.",
-        "Designed and implemented RESTful endpoints using Java and Spring Framework, enabling efficient issue tracking, assignment, and resolution.",
-        "The system automatically fetched GitHub issues, categorized them based on parameters like labels and status, and facilitated faster management. This reduced issue resolution time by 40%, significantly improving team productivity and helping the engineering teams address and resolve issues more efficiently.",
-        "Integrated authentication and security measures, ensuring safe access to the API.",
-        "Collaborated with Cross-Functional Teams: Worked closely with product managers, senior engineers, and the QA team to ensure seamless integration of the API into existing workflows.",
-        "This required a deep understanding of GitHub's API, REST principles, and the backend infrastructure.",
-        "During development, I actively participated in sprint planning, reviewed code, and collaborated with my team to optimize performance and fix bugs.",
-        "Implemented Unit Testing and Continuous Integration: In line with best practices, I implemented unit tests using Java's JUnit framework to ensure the reliability of the API endpoints.",
-        "This helped catch issues early during development and maintained high code quality.",
-        "I integrated the API into Cerner's CI pipeline with Jenkins, automating the build and deployment process.",
-        "This ensured that each change was tested and deployed seamlessly.",
-        "API Documentation and User Guide: To ensure the internal team could effectively use the new API workflow, I wrote comprehensive documentation and provided detailed instructions on how to interact with the API.",
-        "This included API endpoint details, request/response formats, and examples for easy integration with existing systems.",
-        "I also created a set of use case scenarios to highlight common workflows.",
-        "Optimized GitHub Issue Resolution Process: By automating repetitive tasks like issue categorization and assignment, the workflow allowed team members to focus on higher-priority issues, reducing bottlenecks in the process.",
-        "This automation improved team response time to issues and created a smoother, more efficient process for handling critical tasks.",
-        "Exposure to Agile Development and Mentorship: Throughout my internship, I followed Agile methodologies, participating in daily standups, sprint retrospectives, and planning meetings.",
-        "I received mentorship from senior engineers who helped me improve my coding practices and provided valuable feedback through code reviews.",
-        "This experience not only refined my technical skills but also gave me an understanding of the full software development lifecycle, from design and implementation to testing and deployment.",
-        "Learning and Skill Development: The internship helped me grow technically and professionally, as I learned to write efficient, maintainable code, and gained practical knowledge in API design, backend development, and automation.",
-        "I also learned the importance of collaboration, clear communication, and problem-solving in a fast-paced development environment."
+        "Developed a scalable RESTful API workflow (Java, Spring Framework) for GitHub issue management, reducing resolution time by 40%.",
+        "Collaborated with cross-functional teams to integrate the API into existing workflows and implemented unit tests (JUnit) and CI/CD with Jenkins.",
+        "Authored comprehensive API documentation and optimized the GitHub issue resolution process by automating repetitive tasks.",
+        "Gained practical experience in Agile development, API design, backend development, and automation through mentorship and continuous learning."
       ]
     },
     {
@@ -159,8 +122,7 @@
       "timeline": "May, 2019-June, 2019",
       "location": "Kolkata, India",
       "description": [
-        "Engineered an Android application with CRUD functionality using Java and Android Studio.",
-        "Worked under the supervision of a Senior Android Developer who created the project roadmap."
+        "Engineered an Android application with CRUD functionality using Java and Android Studio, working under senior supervision."
       ]
     }
   ],
