@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react";
 import { ArrowUp, Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
+import ThemeToggle from "@/components/ThemeToggle";
 
 export default function Navigation() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -76,7 +77,9 @@ export default function Navigation() {
             >
               Namrata
             </button>
-
+            <div className="flex items-center gap-4">
+              <ThemeToggle />
+            </div>
             {/* Desktop Navigation */}
             <div className="hidden md:flex items-center space-x-8">
               {navItems.map((item) => (
