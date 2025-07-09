@@ -29,6 +29,7 @@ import Navigation from "@/components/navigation";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useEffect, useState } from "react";
 import Image from "next/image";
+import WorkExperienceCarousel from "@/components/work-experience-carousel";
 import GithubMiniStats from "@/components/GithubMiniStats";
 
 export default function Portfolio() {
@@ -522,67 +523,7 @@ export default function Portfolio() {
               My professional journey in software development
             </p>
           </div>
-          {loadingResume ? (
-            <div className="space-y-4 animate-pulse">
-              {[...Array(2)].map((_, i) => (
-                <div
-                  key={i}
-                  className="h-32 bg-gray-200 dark:bg-gray-800 rounded-lg"
-                />
-              ))}
-            </div>
-          ) : resumeError ? (
-            <div className="text-red-500 text-center">{resumeError}</div>
-          ) : resumeData?.experience ? (
-            <div className="space-y-8">
-              {resumeData.experience.map((exp: any, idx: number) => (
-                <Card
-                  key={idx}
-                  className="hover:shadow-xl transition-all duration-300 border-l-4 border-l-blue-600"
-                >
-                  <CardContent className="p-8">
-                    <div className="flex flex-col lg:flex-row lg:items-start gap-6">
-                      <div className="flex-shrink-0">
-                        <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-xl flex items-center justify-center">
-                          <Building className="w-8 h-8 text-white" />
-                        </div>
-                      </div>
-                      <div className="flex-1">
-                        <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between mb-4">
-                          <div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-1">
-                              {exp.role}
-                            </h3>
-                            <p className="text-lg text-blue-600 font-semibold">
-                              {exp.company}
-                            </p>
-                          </div>
-                          <div className="flex flex-col lg:items-end text-sm text-gray-500 mt-2 lg:mt-0">
-                            <div className="flex items-center gap-1 mb-1">
-                              <Calendar className="w-4 h-4" />
-                              <span>{exp.timeline}</span>
-                            </div>
-                            <div className="flex items-center gap-1">
-                              <MapPin className="w-4 h-4" />
-                              <span>{exp.location}</span>
-                            </div>
-                          </div>
-                        </div>
-                        <ul className="space-y-2 text-gray-700 mb-4">
-                          {exp.description.map((desc: string, i: number) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <span className="w-2 h-2 bg-blue-600 rounded-full mt-2 flex-shrink-0"></span>
-                              <span>{desc.replace(/\[cite.*?\]/g, "")}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          ) : null}
+          <WorkExperienceCarousel />
         </div>
       </section>
 
