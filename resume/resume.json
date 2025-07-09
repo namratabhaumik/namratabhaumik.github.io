@@ -1,4 +1,54 @@
 {
+  "technical_skills": {
+    "Languages": ["Python", "Javascript", "Java", "C#", "Bash", "HTML", "CSS"],
+    "Technologies": [
+      "Django",
+      "FastAPI",
+      "Flask",
+      "Pydantic",
+      "Node.js",
+      "React",
+      "jQuery",
+      "OAuth",
+      "JWT",
+      "Firebase",
+      "PyTest (unit + integration)",
+      "Android Studio",
+      "Unity",
+      "Oculus",
+      "Git",
+      "Agile",
+      "Jira",
+      "Kanban",
+      "REST",
+      "Netlify",
+      "PowerBI",
+      "Tableau",
+      "Figma",
+      "D3.js",
+      "Data Visualization"
+    ],
+    "Databases": [
+      "BigQuery",
+      "Firestore",
+      "MySQL",
+      "Postgresql",
+      "MongoDb",
+      "Elasticsearch"
+    ],
+    "Cloud & DevOps": [
+      "GCP",
+      "Docker",
+      "Terraform (IaC)",
+      "GitLab CI",
+      "AWS",
+      "Azure",
+      "Github Actions",
+      "Jenkins",
+      "Linux",
+      "Shell Scripting"
+    ]
+  },
   "education": [
     {
       "degree": "Master of Applied Computer Science",
