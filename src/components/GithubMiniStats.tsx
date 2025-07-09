@@ -35,6 +35,26 @@ export default function GithubMiniStats({
 }: GithubMiniStatsProps) {
   const [githubData, setGithubData] = useState<GitHubData | null>(null);
   const [loading, setLoading] = useState(true);
+  const [resumeData, setResumeData] = useState<any>(null);
+  const [loadingResume, setLoadingResume] = useState(true);
+  const [resumeError, setResumeError] = useState<string | null>(null);
+
+  useEffect(() => {
+    setLoadingResume(true);
+    fetch("/resume/resume.json")
+      .then((res) => {
+        if (!res.ok) throw new Error("Network response was not ok");
+        return res.json();
+      })
+      .then((data) => {
+        setResumeData(data);
+        setLoadingResume(false);
+      })
+      .catch((e) => {
+        setResumeError("Failed to load resume data");
+        setLoadingResume(false);
+      });
+  }, []);
 
   useEffect(() => {
     fetchGitHubData();
@@ -305,35 +325,99 @@ export default function GithubMiniStats({
         </div>
 
         <div className="grid lg:grid-cols-2 gap-8">
-          {/* Language Distribution */}
+          {/* Technical Skills */}
           <Card className="hover:shadow-lg transition-shadow">
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Code className="w-5 h-5" />
-                Most Used Languages
+                Technical Skills
               </CardTitle>
             </CardHeader>
             <CardContent>
-              <div className="space-y-4">
-                {githubData.topLanguages.map((lang, index) => (
-                  <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-center">
-                      <span className="text-sm font-medium text-gray-700 dark:text-gray-200">
-                        {lang.name}
-                      </span>
-                      <span className="text-sm text-gray-500 dark:text-gray-300">
-                        {lang.percentage}%
-                      </span>
-                    </div>
-                    <div className="w-full bg-gray-200 dark:bg-gray-700 rounded-full h-2">
-                      <div
-                        className={`${lang.color} h-2 rounded-full transition-all duration-500`}
-                        style={{ width: `${lang.percentage}%` }}
-                      ></div>
+              {loadingResume ? (
+                <div className="text-gray-500">Loading skills...</div>
+              ) : resumeError ? (
+                <div className="text-red-500">{resumeError}</div>
+              ) : resumeData?.technical_skills ? (
+                <div className="space-y-6">
+                  {/* Languages */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                      Languages
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.technical_skills.Languages.map(
+                        (lang: string, index: number) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="text-xs bg-blue-50 text-blue-700 border-blue-200 hover:bg-blue-100 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-700"
+                          >
+                            {lang}
+                          </Badge>
+                        )
+                      )}
                     </div>
                   </div>
-                ))}
-              </div>
+                  {/* Technologies */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                      Technologies
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.technical_skills.Technologies.map(
+                        (tech: string, index: number) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="text-xs bg-green-50 text-green-700 border-green-200 hover:bg-green-100 dark:bg-green-900 dark:text-green-200 dark:border-green-700"
+                          >
+                            {tech}
+                          </Badge>
+                        )
+                      )}
+                    </div>
+                  </div>
+                  {/* Databases */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                      Databases
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.technical_skills.Databases.map(
+                        (db: string, index: number) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="text-xs bg-purple-50 text-purple-700 border-purple-200 hover:bg-purple-100 dark:bg-purple-900 dark:text-purple-200 dark:border-purple-700"
+                          >
+                            {db}
+                          </Badge>
+                        )
+                      )}
+                    </div>
+                  </div>
+                  {/* Cloud & DevOps */}
+                  <div>
+                    <h4 className="font-semibold text-gray-900 dark:text-white mb-3 text-sm uppercase tracking-wide">
+                      Cloud & DevOps
+                    </h4>
+                    <div className="flex flex-wrap gap-2">
+                      {resumeData.technical_skills["Cloud & DevOps"].map(
+                        (cloud: string, index: number) => (
+                          <Badge
+                            key={index}
+                            variant="outline"
+                            className="text-xs bg-orange-50 text-orange-700 border-orange-200 hover:bg-orange-100 dark:bg-orange-900 dark:text-orange-200 dark:border-orange-700"
+                          >
+                            {cloud}
+                          </Badge>
+                        )
+                      )}
+                    </div>
+                  </div>
+                </div>
+              ) : null}
             </CardContent>
           </Card>
 
