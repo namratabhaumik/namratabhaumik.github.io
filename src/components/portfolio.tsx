@@ -164,30 +164,20 @@ export default function Portfolio() {
               >
                 {/* Main intro with highlighted keywords (plain font-semibold, not gradient) */}
                 <p className="text-xl sm:text-2xl text-gray-700 dark:text-gray-300 leading-relaxed">
-                  I'm currently exploring{" "}
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">
-                    AI-augmented development workflows
-                  </span>
-                  , including{" "}
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">
-                    LLM-powered tools
-                  </span>
-                  , prompt engineering, and the evolving landscape of{" "}
-                  <span className="font-semibold text-gray-900 dark:text-gray-100">
-                    context-aware systems
-                  </span>
-                  .
+                  Curious about what happens{" "}
+                  <span className="font-bold italic text-gray-900 dark:text-gray-100">
+                    after
+                  </span>{" "}
+                  the API works — diving into load balancing, data flow, and
+                  failure recovery.
                 </p>
 
                 {/* Call to action with personality (centered, no gradient box) */}
                 <div className="text-center">
                   <p className="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
-                    Hit me up for collaborations, discussions, events, or
-                    workshops related to{" "}
-                    <span className="font-semibold text-gray-900 dark:text-gray-100">
-                      Agentic Software Development
-                    </span>{" "}
-                    or any technology in general!
+                    Hit me up if you are also exploring the building blocks of
+                    large-scale systems or any collaborations, discussions,
+                    events, or workshops about technology in general!
                   </p>
                 </div>
               </motion.div>
@@ -284,12 +274,11 @@ export default function Portfolio() {
                   I'm a passionate developer with a love for creating innovative
                   solutions that bridge the gap between technology and
                   real-world problems. My journey in tech began with curiosity
-                  and has evolved into a deep appreciation for{" "}
+                  and has evolved into{" "}
                   <span className="font-semibold">
-                    cloud-native architectures
-                  </span>{" "}
-                  and{" "}
-                  <span className="font-semibold">AI-augmented workflows</span>.
+                    building projects, studying real-world architectures, and
+                    understanding the "why" behind the patterns.
+                  </span>
                 </div>
               </div>
               <div>
@@ -297,14 +286,9 @@ export default function Portfolio() {
                   Current Focus
                 </h3>
                 <div className="text-gray-700 leading-relaxed dark:text-gray-300">
-                  Currently, I'm focused on exploring context-aware systems and
-                  building scalable applications. I excel in{" "}
-                  <span className="font-semibold">system design</span>,{" "}
-                  <span className="font-semibold">DevOps automation</span>, and{" "}
-                  <span className="font-semibold">
-                    performance optimization
-                  </span>{" "}
-                  to drive efficiency and innovation.
+                  Currently, I'm learning how engineers design systems that
+                  scale — one project, one failure mode, and one mental model at
+                  a time.
                 </div>
               </div>
               <div>
@@ -312,13 +296,15 @@ export default function Portfolio() {
                   Beyond Code
                 </h3>
                 <div className="text-gray-700 leading-relaxed dark:text-gray-300">
-                  When I'm not coding, you'll find me exploring the latest in
-                  AI/ML technologies, contributing to open-source projects, or
-                  sharing knowledge through{" "}
-                  <span className="font-semibold">technical leadership</span>. I
-                  believe in the power of{" "}
-                  <span className="font-semibold">collaboration</span> and
-                  continuous learning to drive meaningful innovation.
+                  When I'm not coding, you'll find me designing backend systems
+                  that can scale, survive failure, and stay fast — even when
+                  things get messy or contributing to open-source projects. I
+                  enjoy breaking down complex architectures and rebuilding them
+                  from scratch — for the joy of understanding how things{" "}
+                  <span className="font-bold italic text-gray-900 dark:text-gray-100">
+                    actually
+                  </span>{" "}
+                  work.
                 </div>
               </div>
             </div>

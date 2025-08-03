@@ -73,7 +73,6 @@
       "location": "Toronto, ON, Canada",
       "description": [
         "Led backend migration to a modular polyrepo microservices architecture using Python, FastAPI, and GCP services (Firestore, BigQuery, Cloud Run, Cloud Functions, Pub/Sub).",
-        "Accelerated feature delivery by leveraging AI chatbots (OpenAI, Grok, Claude, Gemini) and LLM-assisted tools (Cursor IDE, NotebookLM) for code generation and rapid prototyping.",
         "Built scalable RESTful APIs and microservices, ensuring smooth data ingestion, transformation, and secure file exports.",
         "Designed and executed robust test strategies (Pytest) and owned full-stack developer workflows, including GitLab CI/CD, Docker, and Terraform.",
         "Contributed to system architectural decisions, agile sprint planning, and daily team operations."
