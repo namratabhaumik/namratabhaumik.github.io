@@ -35,6 +35,13 @@ import GithubMiniStats from "@/components/GithubMiniStats";
 export default function Portfolio() {
   const projects = [
     {
+      title: "DreamLayer",
+      description:
+        "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
+      link: "https://github.com/namratabhaumik/DreamLayer",
+      tags: ["Python", "Flask", "React", "TypeScript", "ComfyUI"],
+    },
+    {
       title: "ExpenseTrackerExtended",
       description:
         "A cloud-native expense tracker app leveraging AWS services, Kubernetes (EKS), and Docker for scalable, serverless architecture.",

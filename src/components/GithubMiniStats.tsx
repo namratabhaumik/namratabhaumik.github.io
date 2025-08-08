@@ -158,6 +158,15 @@ export default function GithubMiniStats({
     // Enhanced project data based on resume
     const resumeProjects = [
       {
+        name: "DreamLayer",
+        description:
+          "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
+        language: "Python",
+        url: `https://github.com/${username}/DreamLayer`,
+        category: "Full Stack - Machine Learning",
+        techStack: ["Flask", "ComfyUI", "React", "TypeScript"],
+      },
+      {
         name: "ExpenseTrackerExtended",
         description:
           "Cloud-native expense tracking platform with AWS (Cognito, DynamoDB, S3, SNS), Docker, Kubernetes (EKS), and Python-Django/React",
@@ -205,7 +214,7 @@ export default function GithubMiniStats({
     ];
 
     // Try to match with actual repos, fallback to resume data
-    return resumeProjects.slice(0, 3).map((project) => {
+    return resumeProjects.slice(0, 4).map((project) => {
       const matchingRepo = reposData.find(
         (repo: any) => repo.name.toLowerCase() === project.name.toLowerCase()
       );
