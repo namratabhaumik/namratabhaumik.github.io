@@ -14,6 +14,10 @@ import {
   MapPin,
   GraduationCap,
   Building,
+  Code,
+  Cloud,
+  Database,
+  Zap,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,18 +39,12 @@ import GithubMiniStats from "@/components/GithubMiniStats";
 export default function Portfolio() {
   const projects = [
     {
-      title: "DreamLayer",
-      description:
-        "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
-      link: "https://github.com/namratabhaumik/DreamLayer",
-      tags: ["Python", "Flask", "React", "TypeScript", "ComfyUI"],
-    },
-    {
       title: "ExpenseTrackerExtended",
       description:
         "A cloud-native expense tracker app leveraging AWS services, Kubernetes (EKS), and Docker for scalable, serverless architecture.",
       link: "https://github.com/namratabhaumik/ExpenseTrackerExtended",
       tags: ["AWS", "Kubernetes", "Docker", "Cloud Architecture"],
+      domain: [0, 1, 2, 3, 4], // Backend Engineering, Cloud Infrastructure & DevOps, Data & Analytics Engineering, AI & ML Engineering
     },
     {
       title: "VR-Evacuation-Simulation",
@@ -54,6 +52,7 @@ export default function Portfolio() {
         "A VR evacuation simulation built with Unity3D to analyze pedestrian behavior during fire emergencies.",
       link: "https://github.com/namratabhaumik/VR-Evacuation-Simulation",
       tags: ["Unity3D", "VR", "Simulation", "C#"],
+      domain: [4], // Full Stack Development
     },
     {
       title: "DalVacationHome",
@@ -61,6 +60,7 @@ export default function Portfolio() {
         "Revolutionizing vacation rental management with a cutting-edge cloud platform, powered by GCP and AWS services.",
       link: "https://github.com/namratabhaumik/DalVacationHome",
       tags: ["GCP", "AWS", "Cloud Platform", "Full Stack"],
+      domain: [1, 4], // Cloud Infrastructure & DevOps, Full Stack Development
     },
     {
       title: "BlogIt",
@@ -68,6 +68,7 @@ export default function Portfolio() {
         "A dynamic platform where content creators unite to share ideas, stories, and insights in a collaborative environment.",
       link: "https://github.com/namratabhaumik/BlogIt",
       tags: ["React", "Node.js", "Content Management", "Social Platform"],
+      domain: [2, 4], // Data & Analytics Engineering, Full Stack Development
     },
     {
       title: "MealMate",
@@ -75,6 +76,23 @@ export default function Portfolio() {
         "An Android application for regular meal planning and sharing recipes with an intuitive user experience.",
       link: "https://github.com/namratabhaumik/MealMate",
       tags: ["Android", "Mobile Development", "Java", "Recipe Management"],
+      domain: [4], // Full Stack Development
+    },
+    {
+      title: "FinThesis",
+      description:
+        "An AI-powered Fintech market research assistant that generates structured investment theses using Google Gemini and FAISS for semantic retrieval.",
+      link: "https://github.com/namratabhaumik/FintechMarketThesisGenerator",
+      tags: ["Langchain", "FAISS", "Streamlit", "Gemini API"],
+      domain: [0, 2, 3, 4], // Backend Engineering, Data & Analytics Engineering, AI & ML Engineering, Full Stack Development
+    },
+    {
+      title: "DreamLayer AI",
+      description:
+        "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
+      link: "https://github.com/namratabhaumik/DreamLayer",
+      tags: ["Flask", "ComfyUI", "React", "TypeScript"],
+      domain: [0, 3, 4], // Backend Engineering, AI & ML Engineering, Full Stack Development
     },
   ];
 
@@ -97,6 +115,10 @@ export default function Portfolio() {
   const [resumeData, setResumeData] = useState<any>(null);
   const [loadingResume, setLoadingResume] = useState(true);
   const [resumeError, setResumeError] = useState<string | null>(null);
+  const [activeTab, setActiveTab] = useState(0);
+  const [expandedDomains, setExpandedDomains] = useState<Set<number>>(
+    new Set()
+  );
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
@@ -122,12 +144,207 @@ export default function Portfolio() {
 
   const { scrollY } = useScroll();
   const y = useTransform(scrollY, [0, 300], [0, 50]);
+  const toggleDomainExpanded = (domainId: number) => {
+    const newExpanded = new Set(expandedDomains);
+    if (newExpanded.has(domainId)) {
+      newExpanded.delete(domainId);
+    } else {
+      newExpanded.add(domainId);
+    }
+    setExpandedDomains(newExpanded);
+  };
 
   const [mounted, setMounted] = useState(false);
   useEffect(() => {
     setMounted(true);
   }, []);
   if (!mounted) return null; // or render only the static content
+
+  // == Insert technicalDomains and skills for the new About Me & Skills UI ==
+  const skills = [
+    // Languages
+    { name: "Python", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    {
+      name: "JavaScript",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    { name: "Java", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    { name: "C#", color: "bg-purple-100 text-purple-800 border-purple-200" },
+    { name: "TypeScript", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Bash", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    { name: "HTML", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    { name: "CSS", color: "bg-cyan-100 text-cyan-800 border-cyan-200" },
+
+    // Technologies & Frameworks
+    { name: "Django", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "FastAPI", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "Flask", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    { name: "Pydantic", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Next.js", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    { name: "Node.js", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "React", color: "bg-cyan-100 text-cyan-800 border-cyan-200" },
+    { name: "jQuery", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "OAuth", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    { name: "JWT", color: "bg-yellow-100 text-yellow-800 border-yellow-200" },
+    {
+      name: "Firebase",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    { name: "Redis", color: "bg-red-100 text-red-800 border-red-200" },
+    {
+      name: "Android Studio",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    { name: "Unity", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    { name: "Oculus", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Git", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    { name: "Jira", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "REST", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Netlify", color: "bg-green-100 text-green-800 border-green-200" },
+    {
+      name: "Power BI",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    { name: "Figma", color: "bg-purple-100 text-purple-800 border-purple-200" },
+    { name: "Miro", color: "bg-pink-100 text-pink-800 border-pink-200" },
+    { name: "D3.js", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    {
+      name: "Huggingface",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    { name: "n8n", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "Langchain", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Streamlit", color: "bg-red-100 text-red-800 border-red-200" },
+
+    // Databases
+    {
+      name: "BigQuery",
+      color: "bg-orange-100 text-orange-800 border-orange-200",
+    },
+    {
+      name: "Firestore",
+      color: "bg-yellow-100 text-yellow-800 border-yellow-200",
+    },
+    { name: "MySQL", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "PostgreSQL", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Supabase", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "MongoDB", color: "bg-green-100 text-green-800 border-green-200" },
+    {
+      name: "Elasticsearch",
+      color: "bg-green-100 text-green-800 border-green-200",
+    },
+    { name: "FAISS", color: "bg-blue-100 text-blue-800 border-blue-200" },
+
+    // Cloud & DevOps
+    { name: "GCP", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "AWS", color: "bg-orange-100 text-orange-800 border-orange-200" },
+    { name: "Azure", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    { name: "Docker", color: "bg-blue-100 text-blue-800 border-blue-200" },
+    {
+      name: "Terraform",
+      color: "bg-purple-100 text-purple-800 border-purple-200",
+    },
+    { name: "GitLab CI", color: "bg-pink-100 text-pink-800 border-pink-200" },
+    {
+      name: "GitHub Actions",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
+    { name: "Jenkins", color: "bg-green-100 text-green-800 border-green-200" },
+    { name: "Linux", color: "bg-gray-100 text-gray-800 border-gray-200" },
+    {
+      name: "Shell Scripting",
+      color: "bg-gray-100 text-gray-800 border-gray-200",
+    },
+  ];
+  const technicalDomains = [
+    {
+      id: 1,
+      title: "Backend Engineering",
+      icon: <Code className="w-6 h-6" />,
+      color: "from-blue-500 to-cyan-500",
+      iconColor: "text-blue-600",
+      bgColor: "bg-blue-50 dark:bg-blue-900/20",
+      description:
+        "I design and develop robust, scalable backend systems with production-grade APIs including database optimization.",
+      highlights: [
+        "Designed REST APIs and backend workflows using Django, FastAPI, and Flask",
+        "Improved API performance, searchability, and data retrieval using Elasticsearch and optimized data models",
+        "Built full-stack apps integrating React, PostgreSQL, and Docker",
+      ],
+      achievements: "20%+",
+      achievementLabel: "Performance Gain",
+    },
+    {
+      id: 2,
+      title: "Cloud Infrastructure & DevOps",
+      icon: <Cloud className="w-6 h-6" />,
+      color: "from-purple-500 to-pink-500",
+      iconColor: "text-purple-600",
+      bgColor: "bg-purple-50 dark:bg-purple-900/20",
+      description:
+        "I can build cloud-native architectures and automate deployment pipelines for maximum efficiency.",
+      highlights: [
+        "Deployed containerized apps using AWS (Lambda, S3, DynamoDB), GCP (Cloud Run), and Kubernetes (EKS)",
+        "Implemented CI/CD pipelines and infrastructure automation with GitHub Actions, Gutlab CI, Docker, and Terraform",
+        "Designed serverless architectures for scalability and cost-efficiency",
+      ],
+      achievements: "5+",
+      achievementLabel: "Cloud Platforms",
+    },
+    {
+      id: 3,
+      title: "Data & Analytics Engineering",
+      icon: <Database className="w-6 h-6" />,
+      color: "from-green-500 to-emerald-500",
+      iconColor: "text-green-600",
+      bgColor: "bg-green-50 dark:bg-green-900/20",
+      description:
+        "I can create data pipelines and analytics solutions that power insights and drive decisions.",
+      highlights: [
+        "Built ETL pipelines and data workflows integrating APIs and structured storage",
+        "Experienced with Python data stack (Pandas, NumPy) for data processing",
+        "Currently exploring AI + DataOps — how data pipelines feed machine learning and analytics models",
+        "Built analytics dashboards with Power BI, Tableau, and D3.js to visualize insights",
+      ],
+      achievements: "100+",
+      achievementLabel: "Projects",
+    },
+    {
+      id: 4,
+      title: "AI & Emerging Systems",
+      icon: <Zap className="w-6 h-6" />,
+      color: "from-orange-500 to-red-500",
+      iconColor: "text-orange-600",
+      bgColor: "bg-orange-50 dark:bg-orange-900/20",
+      description:
+        "I integrate AI models into scalable systems with focus on reliability and production-readiness.",
+      highlights: [
+        "Exploring AI adoption and backend LLM integration with OpenAI, Google Gemini, and Anthropic API keys",
+        "Applying system design thinking to intelligent, context-aware architectures",
+        "Passionate about how AI systems can be made reliable, explainable, and production-ready",
+      ],
+      achievements: "4+",
+      achievementLabel: "LLM Tools",
+    },
+    {
+      id: 5,
+      title: "Full Stack Development",
+      icon: <Code className="w-6 h-6" />,
+      color: "from-indigo-500 to-blue-500",
+      iconColor: "text-indigo-600",
+      bgColor: "bg-indigo-50 dark:bg-indigo-900/20",
+      description:
+        "I build complete web applications that connect performant frontends with scalable backend services and cloud deployment pipelines.",
+      highlights: [
+        "Developed full-stack apps like integrating React, Django/Flask, Node.js, and cloud services",
+        "Built responsive UIs with React, Next.js, and Tailwind while connecting RESTful APIs for seamless data flow",
+        "Implemented secure authentication, state management, and performance optimization across the stack",
+        "Deployed containerized full-stack systems using Docker, AWS, and CI/CD pipelines for production readiness",
+      ],
+      achievements: "10+",
+      achievementLabel: "Full Stack Apps",
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-blue-50">
@@ -175,8 +392,8 @@ export default function Portfolio() {
                   <span className="font-bold italic text-gray-900 dark:text-gray-100">
                     after
                   </span>{" "}
-                  the API works — diving into load balancing, data flow, and
-                  failure recovery.
+                  the API works — I build systems that scale, recover, and
+                  perform.
                 </p>
 
                 {/* Call to action with personality (centered, no gradient box) */}
@@ -225,105 +442,314 @@ export default function Portfolio() {
         </div>
       </motion.section>
 
-      {/* About Me Section */}
       <motion.section
         id="about"
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.2 }}
-        className="py-20 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-[#232946] dark:to-[#181c2f] relative overflow-hidden"
+        className="py-20 bg-white dark:bg-[#181c2f] relative overflow-hidden"
       >
-        {/* Floating skill badges in background */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute top-20 left-10 opacity-20">
-            <Badge className="bg-blue-100 text-blue-700 border-blue-200 text-lg px-4 py-2 rounded-xl">
-              System Design
-            </Badge>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
+          <div className="text-center mb-16">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+              What I Can Do For You
+            </h2>
           </div>
-          <div className="absolute top-32 right-16 opacity-15">
-            <Badge className="bg-cyan-100 text-cyan-700 border-cyan-200 text-lg px-4 py-2 rounded-xl">
-              Cloud-Native
-            </Badge>
-          </div>
-          <div className="absolute top-48 left-20 opacity-25">
-            <Badge className="bg-green-100 text-green-700 border-green-200 text-lg px-4 py-2 rounded-xl">
-              DevOps
-            </Badge>
-          </div>
-          <div className="absolute bottom-40 right-12 opacity-20">
-            <Badge className="bg-purple-100 text-purple-700 border-purple-200 text-lg px-4 py-2 rounded-xl">
-              Performance
-            </Badge>
-          </div>
-          <div className="absolute bottom-60 left-16 opacity-15">
-            <Badge className="bg-orange-100 text-orange-700 border-orange-200 text-lg px-4 py-2 rounded-xl">
-              Problem Solving
-            </Badge>
-          </div>
-          <div className="absolute top-60 right-32 opacity-25">
-            <Badge className="bg-yellow-100 text-yellow-700 border-yellow-200 text-lg px-4 py-2 rounded-xl">
-              Automation
-            </Badge>
+          {/* Main Content Area */}
+          <div className="grid lg:grid-cols-3 gap-8 items-start">
+            {/* Left Column - Profile Card */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="flex flex-col items-center lg:sticky lg:top-24"
+            >
+              <div className="relative mb-6 group">
+                {/* Animated background glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-400 to-purple-400 rounded-2xl blur-xl opacity-75 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <Image
+                  src="/profile.jpg"
+                  alt="Namrata Bhaumik"
+                  width={240}
+                  height={240}
+                  className="relative w-60 h-60 rounded-2xl object-cover shadow-2xl ring-4 ring-white dark:ring-gray-900"
+                />
+              </div>
+
+              <div className="text-center mb-8 w-full">
+                <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-1">
+                  Namrata Bhaumik
+                </h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
+                  (she/her)
+                </p>
+                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
+                  I specialize across multiple technical domains, bringing
+                  expertise in every project
+                </p>
+              </div>
+              {/* Tab Navigation for Desktop (vertical) */}
+              <div className="w-full lg:flex flex-col gap-2 hidden">
+                {technicalDomains.map((domain, idx) => (
+                  <motion.button
+                    key={domain.id}
+                    onClick={() => setActiveTab(idx)}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className={`w-full px-4 py-3 rounded-lg text-left font-medium transition-all duration-300 flex items-center gap-3 ${
+                      activeTab === idx
+                        ? `${domain.bgColor} text-gray-900 dark:text-white shadow-md border-l-4 border-current`
+                        : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    }`}
+                  >
+                    <div className={domain.iconColor}>{domain.icon}</div>
+                    <span className="text-sm">{domain.title}</span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+            {/* Right Column - Main Animated Content */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+              className="lg:col-span-2"
+            >
+              {/* Mobile Tab Buttons */}
+              <div className="lg:hidden mb-6 flex gap-2 overflow-x-auto pb-2">
+                {technicalDomains.map((domain, idx) => (
+                  <motion.button
+                    key={domain.id}
+                    onClick={() => setActiveTab(idx)}
+                    className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
+                      activeTab === idx
+                        ? `bg-gradient-to-r ${domain.color} text-white shadow-lg`
+                        : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                    }`}
+                  >
+                    {domain.title}
+                  </motion.button>
+                ))}
+              </div>
+              {/* Animated Content */}
+              <motion.div
+                key={activeTab}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -20 }}
+                transition={{ duration: 0.4 }}
+                className={`${technicalDomains[activeTab].bgColor} rounded-2xl border border-gray-100 dark:border-gray-800 p-8 lg:p-10`}
+              >
+                {/* Header with Icon */}
+                <div className="flex items-start gap-4 mb-6">
+                  <div
+                    className={`w-16 h-16 rounded-xl flex items-center justify-center flex-shrink-0 bg-white dark:bg-gray-900 shadow-lg group hover:scale-110 transition-transform`}
+                  >
+                    <div
+                      className={`${technicalDomains[activeTab].iconColor} text-3xl`}
+                    >
+                      {technicalDomains[activeTab].icon}
+                    </div>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="text-2xl lg:text-3xl font-bold text-gray-900 dark:text-white mb-2">
+                      {technicalDomains[activeTab].title}
+                    </h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      {technicalDomains[activeTab].description}
+                    </p>
+                  </div>
+                </div>
+                {/* Highlights List */}
+                <div>
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    Key Concepts
+                  </h4>
+                  <ul className="grid gap-3">
+                    {technicalDomains[activeTab].highlights.map(
+                      (highlight, i) => (
+                        <motion.li
+                          key={i}
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ delay: i * 0.1, duration: 0.3 }}
+                          className="flex items-start gap-3 bg-white/50 dark:bg-gray-900/50 p-3 rounded-lg border border-gray-100 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600 transition-colors"
+                        >
+                          <motion.span
+                            animate={{ rotate: 360 }}
+                            transition={{
+                              duration: 2,
+                              repeat: Number.POSITIVE_INFINITY,
+                              ease: "linear",
+                            }}
+                            className={`w-1.5 h-1.5 rounded-full mt-2 flex-shrink-0 bg-gradient-to-br ${technicalDomains[activeTab].color}`}
+                          ></motion.span>
+                          <span className="text-sm text-gray-700 dark:text-gray-300">
+                            {highlight}
+                          </span>
+                        </motion.li>
+                      )
+                    )}
+                  </ul>
+                </div>
+                <div className="mt-8">
+                  <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                    Related Projects
+                  </h4>
+                  <div className="space-y-3">
+                    {(() => {
+                      const filteredProjects = projects.filter((p) =>
+                        Array.isArray(p.domain)
+                          ? p.domain.includes(activeTab)
+                          : p.domain === activeTab
+                      );
+                      const isExpanded = expandedDomains.has(activeTab);
+                      const displayedProjects = isExpanded
+                        ? filteredProjects
+                        : filteredProjects.slice(0, 3);
+                      const hasMore = filteredProjects.length > 3;
+
+                      return (
+                        <>
+                          {displayedProjects.map((project, idx) => (
+                            <motion.a
+                              key={idx}
+                              href={project.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              initial={{ opacity: 0, y: 10 }}
+                              animate={{ opacity: 1, y: 0 }}
+                              transition={{ delay: idx * 0.1 }}
+                              className="block p-4 rounded-lg bg-white/60 dark:bg-gray-900/60 hover:bg-white dark:hover:bg-gray-900 transition-colors group border border-gray-200 dark:border-gray-700 hover:border-blue-300 dark:hover:border-blue-600"
+                            >
+                              <div className="flex items-start gap-3">
+                                <div className="flex-shrink-0 mt-1">
+                                  <Code className="w-5 h-5 text-blue-600" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                  <div className="flex items-center gap-2 mb-2">
+                                    <span className="font-semibold text-gray-900 dark:text-white group-hover:text-blue-600 transition-colors">
+                                      {project.title}
+                                    </span>
+                                    <ExternalLink className="w-4 h-4 text-gray-400 group-hover:text-blue-600 transition-colors" />
+                                  </div>
+                                  <p className="text-sm text-gray-700 dark:text-gray-300 mb-3">
+                                    {project.description}
+                                  </p>
+                                  <div className="flex items-center gap-2 flex-wrap">
+                                    {project.tags.map((tag, tagIdx) => (
+                                      <Badge
+                                        key={tagIdx}
+                                        variant="outline"
+                                        className="text-xs bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400"
+                                      >
+                                        {tag}
+                                      </Badge>
+                                    ))}
+                                  </div>
+                                </div>
+                              </div>
+                            </motion.a>
+                          ))}
+                          {hasMore && (
+                            <motion.button
+                              onClick={() => toggleDomainExpanded(activeTab)}
+                              className="w-full py-3 px-4 mt-2 rounded-lg border-2 border-dashed border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-blue-500 hover:text-blue-600 dark:hover:border-blue-500 dark:hover:text-blue-400 transition-all duration-300 font-medium flex items-center justify-center gap-2 group hover:bg-blue-50/50 dark:hover:bg-blue-900/10"
+                              whileHover={{ scale: 1.02 }}
+                              whileTap={{ scale: 0.98 }}
+                            >
+                              {isExpanded ? (
+                                <>
+                                  <span>Show Less</span>
+                                  <svg
+                                    className="w-4 h-4 transform group-hover:rotate-180 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                                    />
+                                  </svg>
+                                </>
+                              ) : (
+                                <>
+                                  <span>
+                                    Show {filteredProjects.length - 3} More
+                                  </span>
+                                  <svg
+                                    className="w-4 h-4 transform group-hover:rotate-180 transition-transform"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M5 10l7-7 7 7m-7 7v-12"
+                                    />
+                                  </svg>
+                                </>
+                              )}
+                            </motion.button>
+                          )}
+                          {filteredProjects.length === 0 && (
+                            <p className="text-sm text-gray-500 dark:text-gray-400 text-center py-4">
+                              More projects coming soon in this domain
+                            </p>
+                          )}
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
+              </motion.div>
+              {/* Navigation Info */}
+              <div className="text-center mt-8 text-sm text-gray-600 dark:text-gray-400">
+                <p>
+                  Explore {technicalDomains.length} domains • Click to navigate
+                </p>
+              </div>
+            </motion.div>
           </div>
         </div>
+      </motion.section>
+      {/* == END About section == */}
 
-        <div className="max-w-4xl mx-auto px-4 text-center relative z-10">
-          <h2 className="text-3xl font-bold mb-8 text-gray-900 dark:text-white">
-            About Me
-          </h2>
-          <div className="grid md:grid-cols-2 gap-12 items-center">
-            <div className="space-y-6 text-left">
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
-                  My Journey
-                </h3>
-                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
-                  I'm a passionate developer with a love for creating innovative
-                  solutions that bridge the gap between technology and
-                  real-world problems. My journey in tech began with curiosity
-                  and has evolved into{" "}
-                  <span className="font-semibold">
-                    building projects, studying real-world architectures, and
-                    understanding the "why" behind the patterns.
-                  </span>
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
-                  Current Focus
-                </h3>
-                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
-                  Currently, I'm learning how engineers design systems that
-                  scale — one project, one failure mode, and one mental model at
-                  a time.
-                </div>
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-gray-900 mb-3 dark:text-white">
-                  Beyond Code
-                </h3>
-                <div className="text-gray-700 leading-relaxed dark:text-gray-300">
-                  When I'm not coding, you'll find me designing backend systems
-                  that can scale, survive failure, and stay fast — even when
-                  things get messy or contributing to open-source projects. I
-                  enjoy breaking down complex architectures and rebuilding them
-                  from scratch — for the joy of understanding how things{" "}
-                  <span className="font-bold italic text-gray-900 dark:text-gray-100">
-                    actually
-                  </span>{" "}
-                  work.
-                </div>
-              </div>
-            </div>
-            <div className="flex justify-center">
-              <Image
-                src="/profile.jpg"
-                alt="Namrata Bhaumik"
-                width={256}
-                height={256}
-                className="w-64 h-64 rounded-full object-cover shadow-lg"
-              />
-            </div>
+      {/* Skills Section */}
+      <motion.section
+        id="skills"
+        initial={{ opacity: 0, y: 40 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, amount: 0.2 }}
+        className="py-20 bg-slate-50 dark:bg-[#232946]"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
+              My Foundations Lie In
+            </h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">
+              Technologies and tools I work with
+            </p>
+          </div>
+          <div className="flex flex-wrap justify-center gap-3">
+            {skills.map((skill, index) => (
+              <Badge
+                key={index}
+                variant="outline"
+                className={`${skill.color} px-4 py-2 text-sm font-medium border-2 transition-transform duration-200 hover:scale-110 hover:shadow-lg cursor-pointer`}
+              >
+                {skill.name}
+              </Badge>
+            ))}
           </div>
         </div>
       </motion.section>

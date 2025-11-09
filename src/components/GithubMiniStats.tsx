@@ -211,6 +211,15 @@ export default function GithubMiniStats({
         category: "Mobile",
         techStack: ["Android Studio", "Java", "Firebase"],
       },
+      {
+        name: "FinThesis",
+        description:
+          "An AI-powered Fintech market research assistant that generates structured investment theses using Google Gemini and FAISS for semantic retrieval.",
+        language: "Python",
+        url: `https://github.com/${username}/FintechMarketThesisGenerator`,
+        category: "Full Stack - LLM Integration",
+        techStack: ["Langchain", "FAISS", "Streamlit", "Gemini API"],
+      },
     ];
 
     // Try to match with actual repos, fallback to resume data
