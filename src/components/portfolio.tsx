@@ -485,10 +485,58 @@ export default function Portfolio() {
                 <p className="text-sm text-gray-600 dark:text-gray-400 mb-4">
                   (she/her)
                 </p>
-                <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-                  I specialize across multiple technical domains, bringing
-                  expertise in every project
-                </p>
+                <div className="mt-6 text-left space-y-3 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20 rounded-lg p-4 border border-blue-100 dark:border-blue-800">
+                  <p className="text-sm font-semibold text-gray-900 dark:text-white mb-3">
+                    I'm happy to help if:
+                  </p>
+                  <ul className="space-y-2.5">
+                    <li className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-blue-600 dark:text-blue-400 font-bold flex-shrink-0">
+                        •
+                      </span>
+                      <span>
+                        You're going{" "}
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          0 → 1
+                        </span>{" "}
+                        with your product
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-purple-600 dark:text-purple-400 font-bold flex-shrink-0">
+                        •
+                      </span>
+                      <span>
+                        Your infrastructure needs{" "}
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          a direction or a rebuild
+                        </span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-indigo-600 dark:text-indigo-400 font-bold flex-shrink-0">
+                        •
+                      </span>
+                      <span>
+                        Your product works end-to-end but needs{" "}
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          scaling
+                        </span>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2.5 text-sm text-gray-700 dark:text-gray-300">
+                      <span className="text-cyan-600 dark:text-cyan-400 font-bold flex-shrink-0">
+                        •
+                      </span>
+                      <span>
+                        You're doing everything right, but want to{" "}
+                        <span className="font-semibold text-gray-900 dark:text-white">
+                          move faster
+                        </span>
+                      </span>
+                    </li>
+                  </ul>
+                </div>
               </div>
               {/* Tab Navigation for Desktop (vertical) */}
               <div className="w-full lg:flex flex-col gap-2 hidden">

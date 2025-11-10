@@ -158,7 +158,7 @@ export default function GithubMiniStats({
     // Enhanced project data based on resume
     const resumeProjects = [
       {
-        name: "DreamLayer",
+        name: "DreamLayer AI",
         description:
           "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
         language: "Python",
