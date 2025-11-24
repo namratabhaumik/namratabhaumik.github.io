@@ -100,6 +100,11 @@ export default function Portfolio() {
 
   const certifications = [
     {
+      name: "Hugging Face Fundamentals of LLMs - Transformer Models",
+      issuer: "Hugging Face",
+      image: "/hugging-face-llm-course-certificate.jpg",
+    },
+    {
       name: "AWS Certified Cloud Practitioner",
       issuer: "Amazon Web Services",
       link: "https://www.credly.com/badges/8cceb83b-b7e4-42f8-8a71-20bf2ad712b2/linked_in_profile",
@@ -116,11 +121,6 @@ export default function Portfolio() {
       issuer: "Microsoft",
       link: "https://www.credly.com/badges/c16b4879-0e08-46af-b834-7b8e0144250e/public_url",
       image: "/power-platform-certificate.png",
-    },
-    {
-      name: "Hugging Face Fundamentals of LLMs - Transformer Models",
-      issuer: "Hugging Face",
-      image: "/hugging-face-llm-course-certificate.jpg",
     },
   ];
 
