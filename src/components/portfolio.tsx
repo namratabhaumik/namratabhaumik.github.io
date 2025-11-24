@@ -5,7 +5,6 @@ import {
   Linkedin,
   Mail,
   ExternalLink,
-  Award,
   MessageCircle,
   Instagram,
   BookOpen,
@@ -18,6 +17,7 @@ import {
   Cloud,
   Database,
   Zap,
+  Maximize2
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -35,6 +35,8 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 import WorkExperienceCarousel from "@/components/work-experience-carousel";
 import GithubMiniStats from "@/components/GithubMiniStats";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
+
 
 export default function Portfolio() {
   const projects = [
@@ -99,15 +101,26 @@ export default function Portfolio() {
   const certifications = [
     {
       name: "AWS Certified Cloud Practitioner",
+      issuer: "Amazon Web Services",
       link: "https://www.credly.com/badges/8cceb83b-b7e4-42f8-8a71-20bf2ad712b2/linked_in_profile",
+      image: "/aws-certificate.png",
     },
     {
       name: "Microsoft Certified Azure Fundamentals",
+      issuer: "Microsoft",
       link: "https://www.credly.com/badges/1aab900c-d79f-4b18-93ab-7d1768217c7b/public_url",
+      image: "/azure-certificate.png",
     },
     {
       name: "Microsoft Certified: Power Platform Fundamentals",
+      issuer: "Microsoft",
       link: "https://www.credly.com/badges/c16b4879-0e08-46af-b834-7b8e0144250e/public_url",
+      image: "/power-platform-certificate.png",
+    },
+    {
+      name: "Hugging Face Fundamentals of LLMs - Transformer Models",
+      issuer: "Hugging Face",
+      image: "/hugging-face-llm-course-certificate.jpg",
     },
   ];
 
@@ -546,11 +559,10 @@ export default function Portfolio() {
                     onClick={() => setActiveTab(idx)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className={`w-full px-4 py-3 rounded-lg text-left font-medium transition-all duration-300 flex items-center gap-3 ${
-                      activeTab === idx
-                        ? `${domain.bgColor} text-gray-900 dark:text-white shadow-md border-l-4 border-current`
-                        : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
-                    }`}
+                    className={`w-full px-4 py-3 rounded-lg text-left font-medium transition-all duration-300 flex items-center gap-3 ${activeTab === idx
+                      ? `${domain.bgColor} text-gray-900 dark:text-white shadow-md border-l-4 border-current`
+                      : "bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                      }`}
                   >
                     <div className={domain.iconColor}>{domain.icon}</div>
                     <span className="text-sm">{domain.title}</span>
@@ -572,11 +584,10 @@ export default function Portfolio() {
                   <motion.button
                     key={domain.id}
                     onClick={() => setActiveTab(idx)}
-                    className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 ${
-                      activeTab === idx
-                        ? `bg-gradient-to-r ${domain.color} text-white shadow-lg`
-                        : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
-                    }`}
+                    className={`px-4 py-2 rounded-full font-medium text-sm whitespace-nowrap transition-all duration-300 flex-shrink-0 ${activeTab === idx
+                      ? `bg-gradient-to-r ${domain.color} text-white shadow-lg`
+                      : "bg-gray-200 dark:bg-gray-800 text-gray-700 dark:text-gray-300"
+                      }`}
                   >
                     {domain.title}
                   </motion.button>
@@ -900,29 +911,62 @@ export default function Portfolio() {
       >
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">
-              Certifications
-            </h2>
-            <p className="text-lg text-gray-600">
-              Professional certifications and achievements
-            </p>
+            <h2 className="text-3xl font-bold text-gray-900 mb-4 dark:text-white">Certifications</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-300">Professional certifications and achievements</p>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {certifications.map((cert, index) => (
-              <Link
-                key={index}
-                href={cert.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block"
-              >
-                <Card className="text-center hover:shadow-lg transition-shadow border-0 shadow-md bg-gradient-to-br from-blue-50 to-purple-50 cursor-pointer">
-                  <CardContent className="p-6">
-                    <Award className="w-12 h-12 text-blue-600 mx-auto mb-4" />
-                    <h3 className="font-semibold text-gray-900">{cert.name}</h3>
-                  </CardContent>
-                </Card>
-              </Link>
+              <Dialog key={index}>
+                <DialogTrigger asChild>
+                  <Card className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f]">
+                    <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                      <Image
+                        src={cert.image || "/placeholder.svg"}
+                        alt={cert.name}
+                        fill
+                        className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                        <Maximize2 className="w-8 h-8 text-white drop-shadow-md" />
+                      </div>
+                    </div>
+                    <CardContent className="p-6">
+                      <div className="flex justify-between items-start mb-2">
+                        <Badge
+                          variant="secondary"
+                          className="bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                        >
+                          {cert.issuer}
+                        </Badge>
+                      </div>
+                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                        {cert.name}
+                      </h3>
+                    </CardContent>
+                  </Card>
+                </DialogTrigger>
+                <DialogContent className="max-w-3xl w-full p-0 overflow-hidden bg-white dark:bg-[#181c2f] border-none">
+                  <div className="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-900">
+                    <Image src={cert.image || "/placeholder.svg"} alt={cert.name} fill className="object-contain" />
+                  </div>
+                  <div className="p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white dark:bg-[#181c2f]">
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{cert.name}</h3>
+                      <p className="text-gray-500 dark:text-gray-400">
+                        Issued by {cert.issuer}
+                      </p>
+                    </div>
+                    {cert.link && (
+                      <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                        <Link href={cert.link} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="w-4 h-4 mr-2" />
+                          Verify Credential
+                        </Link>
+                      </Button>
+                    )}
+                  </div>
+                </DialogContent>
+              </Dialog>
             ))}
           </div>
         </div>
