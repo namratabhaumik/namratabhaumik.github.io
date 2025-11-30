@@ -41,20 +41,36 @@ import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog"
 export default function Portfolio() {
   const projects = [
     {
+      title: "Syn-MRGE",
+      description:
+        "A generative model prototype using DDPM (Denoising Diffusion Probabilistic Model) to create realistic, high-fidelity synthetic patient records.",
+      link: "https://github.com/namratabhaumik/Syn-MRGE",
+      tags: ["Python", "PyTorch", "Pandas, NumPy", "scikit-learn", "seaborn", "matplotlib", "umap-learn", "Kaggle", "Google Colab", "Jupyter Notebook", "CUDA"],
+      domain: [0, 2, 3], // Backend Engineering, Data & Analytics Engineering, AI & ML Engineering
+    },
+    {
+      title: "FinThesis",
+      description:
+        "An AI-powered Fintech market research assistant that generates structured investment theses using Google Gemini and FAISS for semantic retrieval.",
+      link: "https://github.com/namratabhaumik/FintechMarketThesisGenerator",
+      tags: ["Langchain", "FAISS", "Streamlit", "Gemini API"],
+      domain: [0, 2, 3, 4], // Backend Engineering, Data & Analytics Engineering, AI & ML Engineering, Full Stack Development
+    },
+    {
+      title: "DreamLayer AI",
+      description:
+        "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
+      link: "https://github.com/namratabhaumik/DreamLayer",
+      tags: ["Flask", "ComfyUI", "React", "TypeScript"],
+      domain: [0, 3, 4], // Backend Engineering, AI & ML Engineering, Full Stack Development
+    },
+    {
       title: "ExpenseTrackerExtended",
       description:
         "A cloud-native expense tracker app leveraging AWS services, Kubernetes (EKS), and Docker for scalable, serverless architecture.",
       link: "https://github.com/namratabhaumik/ExpenseTrackerExtended",
       tags: ["AWS", "Kubernetes", "Docker", "Cloud Architecture"],
       domain: [0, 1, 2, 3, 4], // Backend Engineering, Cloud Infrastructure & DevOps, Data & Analytics Engineering, AI & ML Engineering
-    },
-    {
-      title: "VR-Evacuation-Simulation",
-      description:
-        "A VR evacuation simulation built with Unity3D to analyze pedestrian behavior during fire emergencies.",
-      link: "https://github.com/namratabhaumik/VR-Evacuation-Simulation",
-      tags: ["Unity3D", "VR", "Simulation", "C#"],
-      domain: [4], // Full Stack Development
     },
     {
       title: "DalVacationHome",
@@ -73,28 +89,20 @@ export default function Portfolio() {
       domain: [2, 4], // Data & Analytics Engineering, Full Stack Development
     },
     {
+      title: "VR-Evacuation-Simulation",
+      description:
+        "A VR evacuation simulation built with Unity3D to analyze pedestrian behavior during fire emergencies.",
+      link: "https://github.com/namratabhaumik/VR-Evacuation-Simulation",
+      tags: ["Unity3D", "VR", "Simulation", "C#"],
+      domain: [4], // Full Stack Development
+    },
+    {
       title: "MealMate",
       description:
         "An Android application for regular meal planning and sharing recipes with an intuitive user experience.",
       link: "https://github.com/namratabhaumik/MealMate",
       tags: ["Android", "Mobile Development", "Java", "Recipe Management"],
       domain: [4], // Full Stack Development
-    },
-    {
-      title: "FinThesis",
-      description:
-        "An AI-powered Fintech market research assistant that generates structured investment theses using Google Gemini and FAISS for semantic retrieval.",
-      link: "https://github.com/namratabhaumik/FintechMarketThesisGenerator",
-      tags: ["Langchain", "FAISS", "Streamlit", "Gemini API"],
-      domain: [0, 2, 3, 4], // Backend Engineering, Data & Analytics Engineering, AI & ML Engineering, Full Stack Development
-    },
-    {
-      title: "DreamLayer AI",
-      description:
-        "An open-source Stable Diffusion WebUI that keeps the familiar Automatic1111 ⁄ Forge layout you know, replaces the clutter with a modern design system, and runs every generation step on ComfyUI in the background.",
-      link: "https://github.com/namratabhaumik/DreamLayer",
-      tags: ["Flask", "ComfyUI", "React", "TypeScript"],
-      domain: [0, 3, 4], // Backend Engineering, AI & ML Engineering, Full Stack Development
     },
   ];
 
