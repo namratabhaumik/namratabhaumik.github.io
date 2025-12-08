@@ -17,7 +17,9 @@ import {
   Cloud,
   Database,
   Zap,
-  Maximize2
+  Maximize2,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -108,9 +110,21 @@ export default function Portfolio() {
 
   const certifications = [
     {
-      name: "Hugging Face Fundamentals of LLMs - Transformer Models",
+      name: "Hugging Face",
       issuer: "Hugging Face",
-      image: "/hugging-face-llm-course-certificate.jpg",
+      group: true,
+      certificates: [
+        {
+          name: "Fundamentals of LLMs - Transformer Models",
+          date: "2025",
+          image: "/hugging-face-llm-course-certificate.jpg",
+        },
+        {
+          name: "AI Agents Fundamentals",
+          date: "2025",
+          image: "/aI-agents-fundamentals.jpeg",
+        },
+      ],
     },
     {
       name: "AWS Certified Cloud Practitioner",
@@ -140,6 +154,8 @@ export default function Portfolio() {
   const [expandedDomains, setExpandedDomains] = useState<Set<number>>(
     new Set()
   );
+  const [expandedGroup, setExpandedGroup] = useState<number | null>(null);
+  const [currentHFCertIndex, setCurrentHFCertIndex] = useState(0);
 
   useEffect(() => {
     setTimeout(() => setIsLoading(false), 2000);
@@ -173,6 +189,16 @@ export default function Portfolio() {
       newExpanded.add(domainId);
     }
     setExpandedDomains(newExpanded);
+  };
+
+  const handlePrevCert = () => {
+    const hfCerts = certifications.find((c: any) => c.group)?.certificates || [];
+    setCurrentHFCertIndex((prev) => (prev === 0 ? hfCerts.length - 1 : prev - 1));
+  };
+
+  const handleNextCert = () => {
+    const hfCerts = certifications.find((c: any) => c.group)?.certificates || [];
+    setCurrentHFCertIndex((prev) => (prev === hfCerts.length - 1 ? 0 : prev + 1));
   };
 
   const [mounted, setMounted] = useState(false);
@@ -923,59 +949,171 @@ export default function Portfolio() {
             <p className="text-lg text-gray-600 dark:text-gray-300">Professional certifications and achievements</p>
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {certifications.map((cert, index) => (
-              <Dialog key={index}>
-                <DialogTrigger asChild>
-                  <Card className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f]">
-                    <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-gray-800">
-                      <Image
-                        src={cert.image || "/placeholder.svg"}
-                        alt={cert.name}
-                        fill
-                        className="object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
-                        <Maximize2 className="w-8 h-8 text-white drop-shadow-md" />
+            {certifications.map((cert: any, index) => {
+              if (cert.group) {
+                return (
+                  <Dialog
+                    key={index}
+                    open={expandedGroup === index}
+                    onOpenChange={(open) => {
+                      setExpandedGroup(open ? index : null);
+                      if (open) setCurrentHFCertIndex(0);
+                    }}
+                  >
+                    <DialogTrigger asChild>
+                      <Card className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f]">
+                        {/* Image area with stacked cards */}
+                        <div className="relative h-48 overflow-visible">
+                          {/* Stack cards with offset */}
+                          {cert.certificates.slice(0, 2).map((_: any, stackIndex: number) => (
+                            <div
+                              key={stackIndex}
+                              className="absolute top-0 left-0 right-0 h-48 transition-all duration-300 bg-white dark:bg-[#181c2f] border border-gray-200 dark:border-gray-700 rounded-lg shadow-md overflow-hidden"
+                              style={{
+                                transform: `translateY(${stackIndex * 8}px) translateX(${stackIndex * 6}px) rotateZ(${stackIndex * 1.5}deg)`,
+                                zIndex: 3 - stackIndex,
+                              }}
+                            >
+                              <div className="relative h-full overflow-hidden bg-gray-100 dark:bg-gray-800">
+                                <Image
+                                  src={cert.certificates[stackIndex].image || "/placeholder.svg"}
+                                  alt={cert.certificates[stackIndex].name}
+                                  fill
+                                  className="object-cover transition-transform duration-500 group-hover:scale-105"
+                                />
+                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                                  <Maximize2 className="w-8 h-8 text-white drop-shadow-md" />
+                                </div>
+                              </div>
+                            </div>
+                          ))}
+
+                          {/* Badge showing count */}
+                          <div className="absolute top-3 right-3 z-10 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold shadow-lg">
+                            {cert.certificates.length} Certificates
+                          </div>
+                        </div>
+
+                        {/* Content area with badge and title */}
+                        <CardContent className="p-6">
+                          <div className="flex justify-between items-start mb-2">
+                            <Badge
+                              variant="secondary"
+                              className="bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                            >
+                              {cert.issuer}
+                            </Badge>
+                          </div>
+                          <h3 className="font-semibold text-lg text-gray-900 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                            Hugging Face Certificates
+                          </h3>
+                        </CardContent>
+                      </Card>
+                    </DialogTrigger>
+
+                    <DialogContent className="max-w-3xl w-full p-0 overflow-hidden bg-white dark:bg-[#181c2f] border-none">
+                      <div className="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-900">
+                        <Image
+                          src={cert.certificates[currentHFCertIndex]?.image || "/placeholder.svg"}
+                          alt={cert.certificates[currentHFCertIndex]?.name}
+                          fill
+                          className="object-contain"
+                        />
                       </div>
-                    </div>
-                    <CardContent className="p-6">
-                      <div className="flex justify-between items-start mb-2">
-                        <Badge
-                          variant="secondary"
-                          className="bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                      <div className="p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white dark:bg-[#181c2f]">
+                        <div className="flex-1">
+                          <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+                            {cert.certificates[currentHFCertIndex]?.name}
+                          </h3>
+                          <p className="text-gray-500 dark:text-gray-400">
+                            Issued by {cert.issuer} • {cert.certificates[currentHFCertIndex]?.date}
+                          </p>
+                          <p className="text-sm text-gray-400 dark:text-gray-500 mt-2">
+                            {currentHFCertIndex + 1} of {cert.certificates.length}
+                          </p>
+                        </div>
+                      </div>
+
+                      {/* Navigation arrows */}
+                      <div className="flex justify-between px-4 pb-4 gap-2">
+                        <Button
+                          onClick={handlePrevCert}
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center gap-2 bg-transparent"
                         >
-                          {cert.issuer}
-                        </Badge>
+                          <ChevronLeft className="w-4 h-4" />
+                          Previous
+                        </Button>
+                        <Button
+                          onClick={handleNextCert}
+                          variant="outline"
+                          size="sm"
+                          className="flex items-center gap-2 bg-transparent"
+                        >
+                          Next
+                          <ChevronRight className="w-4 h-4" />
+                        </Button>
                       </div>
-                      <h3 className="font-semibold text-lg text-gray-900 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
-                        {cert.name}
-                      </h3>
-                    </CardContent>
-                  </Card>
-                </DialogTrigger>
-                <DialogContent className="max-w-3xl w-full p-0 overflow-hidden bg-white dark:bg-[#181c2f] border-none">
-                  <div className="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-900">
-                    <Image src={cert.image || "/placeholder.svg"} alt={cert.name} fill className="object-contain" />
-                  </div>
-                  <div className="p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white dark:bg-[#181c2f]">
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{cert.name}</h3>
-                      <p className="text-gray-500 dark:text-gray-400">
-                        Issued by {cert.issuer}
-                      </p>
+                    </DialogContent>
+                  </Dialog>
+                );
+              }
+
+              return (
+                <Dialog key={index}>
+                  <DialogTrigger asChild>
+                    <Card className="group overflow-hidden cursor-pointer hover:shadow-xl transition-all duration-300 border-0 shadow-md bg-white dark:bg-[#181c2f]">
+                      <div className="relative h-48 overflow-hidden bg-gray-100 dark:bg-gray-800">
+                        <Image
+                          src={cert.image || "/placeholder.svg"}
+                          alt={cert.name}
+                          fill
+                          className="object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                        <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center opacity-0 group-hover:opacity-100">
+                          <Maximize2 className="w-8 h-8 text-white drop-shadow-md" />
+                        </div>
+                      </div>
+                      <CardContent className="p-6">
+                        <div className="flex justify-between items-start mb-2">
+                          <Badge
+                            variant="secondary"
+                            className="bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-300"
+                          >
+                            {cert.issuer}
+                          </Badge>
+                        </div>
+                        <h3 className="font-semibold text-lg text-gray-900 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
+                          {cert.name}
+                        </h3>
+                      </CardContent>
+                    </Card>
+                  </DialogTrigger>
+                  <DialogContent className="max-w-3xl w-full p-0 overflow-hidden bg-white dark:bg-[#181c2f] border-none">
+                    <div className="relative w-full aspect-[4/3] bg-gray-100 dark:bg-gray-900">
+                      <Image src={cert.image || "/placeholder.svg"} alt={cert.name} fill className="object-contain" />
                     </div>
-                    {cert.link && (
-                      <Button asChild className="bg-blue-600 hover:bg-blue-700">
-                        <Link href={cert.link} target="_blank" rel="noopener noreferrer">
-                          <ExternalLink className="w-4 h-4 mr-2" />
-                          Verify Credential
-                        </Link>
-                      </Button>
-                    )}
-                  </div>
-                </DialogContent>
-              </Dialog>
-            ))}
+                    <div className="p-6 flex flex-col sm:flex-row justify-between items-center gap-4 bg-white dark:bg-[#181c2f]">
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-1">{cert.name}</h3>
+                        <p className="text-gray-500 dark:text-gray-400">
+                          Issued by {cert.issuer}
+                        </p>
+                      </div>
+                      {cert.link && (
+                        <Button asChild className="bg-blue-600 hover:bg-blue-700">
+                          <Link href={cert.link} target="_blank" rel="noopener noreferrer">
+                            <ExternalLink className="w-4 h-4 mr-2" />
+                            Verify Credential
+                          </Link>
+                        </Button>
+                      )}
+                    </div>
+                  </DialogContent>
+                </Dialog>
+              );
+            })}
           </div>
         </div>
       </motion.section>
