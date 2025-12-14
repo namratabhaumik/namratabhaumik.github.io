@@ -124,6 +124,11 @@ export default function Portfolio() {
           date: "2025",
           image: "/aI-agents-fundamentals.jpeg",
         },
+        {
+          name: "Fundamentals of MCP",
+          date: "2025",
+          image: "/Fundamentals-of-MCP.jpeg",
+        },
       ],
     },
     {
